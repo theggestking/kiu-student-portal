@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>KIU Student Portal</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- CSS-only Light/Dark Mode Toggle -->
+  <input type="checkbox" id="theme-toggle" class="theme-toggle-input">
+
+  <div class="page">
+
+    <!-- Header / Navigation -->
+    <header class="site-header">
+      <div class="container header-container">
+
+        <a href="#home" class="logo">
+          <img src="https://www.kiu.edu.ge/images/logo.svg" alt="KIU logo" class="logo-light">
+          <img src="https://www.kiu.edu.ge/images/logo-white-01.svg" alt="KIU logo" class="logo-dark">
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <form class="search-form" action="#" method="get">
+            <label for="site-search" class="visually-hidden">Search</label>
+            <input type="search" id="site-search" name="search" placeholder="Search...">
+            <button type="submit" aria-label="Search">⌕</button>
+          </form>
+
+          <div class="language-switch" aria-label="Language switch">
+            <a href="#" class="active">EN</a>
+            <span>|</span>
+            <a href="#">KA</a>
+          </div>
+
+          <label for="theme-toggle" class="theme-toggle" aria-label="Toggle dark and light mode">
+            <span class="theme-toggle-icon sun">☀️</span>
+            <span class="theme-toggle-icon moon">🌙</span>
+          </label>
+        </div>
+
+      </div>
+    </header>
+
+
+    <main>
+
+      <!-- Hero Section -->
+      <section id="home" class="hero-section">
+        <div class="container hero-container">
+
+          <div class="hero-content">
+            <p class="section-label">Kutaisi International University</p>
+
+            <h1>Welcome to the KIU Student Portal</h1>
+
+            <p class="hero-text">
+              Your academic life, campus services, student requests, news, and events
+              in one clean digital space.
+            </p>
+
+            <div class="hero-buttons">
+              <a href="#programs" class="btn btn-primary">Explore Programs</a>
+              <a href="#services" class="btn btn-outline">Student Services</a>
+            </div>
+          </div>
+
+          <div class="hero-image">
+            <img src="images/background1.jpg" alt="Modern KIU campus building">
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- About Section -->
+      <section id="about" class="about-section section-padding">
+        <div class="container two-column-layout">
+
+          <div class="about-image">
+            <img
+              src="https://keystoneacademic-res.cloudinary.com/image/upload/c_limit,w_1920/dpr_auto/f_auto/q_auto/v1/element/17/178209_Untitled-1-04.png"
+              alt="Students studying together on campus">
+          </div>
+
+          <div class="about-content">
+            <p class="section-label">About the Portal</p>
+
+            <h2>Designed for a Better Student Experience</h2>
+
+            <p>
+              The KIU Student Portal is a concept platform created to help students
+              access academic information, student services, campus requests, university
+              news, events, and media from one organized place.
+            </p>
+
+            <p>
+              This landing page presents a static visual version of the portal using
+              only HTML and CSS.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- Academic Programs Section -->
+      <section id="programs" class="programs-section section-padding">
+        <div class="container">
+
+          <div class="section-heading">
+            <p class="section-label">Academic Programs</p>
+            <h2>Explore KIU Study Areas</h2>
+            <p>
+              Choose a study level and view available academic programs.
+            </p>
+          </div>
+
+          <div class="program-tabs">
+
+            <input type="radio" name="program-level" id="bachelor-tab" checked>
+            <input type="radio" name="program-level" id="single-cycle-tab">
+            <input type="radio" name="program-level" id="master-tab">
+            <input type="radio" name="program-level" id="doctoral-tab">
+
+            <div class="tab-labels" role="tablist" aria-label="Academic program levels">
+              <label for="bachelor-tab">Bachelor</label>
+              <label for="single-cycle-tab">Single-Cycle</label>
+              <label for="master-tab">Master</label>
+              <label for="doctoral-tab">Doctoral</label>
+            </div>
+
+            <div class="program-content bachelor-content">
+
+              <article class="program-card program-card-image"
+                style="--program-bg: url('images/Mathematics\ &\ Applications.jpg');">
+                <div class="program-card-overlay"></div>
+                <div class="program-card-content">
+                  <h3>Mathematics & Applications</h3>
+                  <p>Foundations for Artificial Intelligence, Scientific Computing, Financial Mathematics</p>
+                  <span>BSc</span>
+                </div>
+              </article>
+
+              <article class="program-card program-card-image"
+                style="--program-bg: url('https://www.kiu.edu.ge/uploads_script/services/vbnype38chhqczw.jpg');">
+                <div class="program-card-overlay"></div>
+                <div class="program-card-content">
+                  <h3>Computer Science</h3>
+                  <p>Programming, algorithms, systems, and modern computing foundations.</p>
+                  <span>BSc</span>
+                </div>
+              </article>
+
+              <article class="program-card program-card-image"
+                style="--program-bg: url('https://www.kiu.edu.ge/uploads_script/services/ypd1lxupl27q8c1.jpg');">
+                <div class="program-card-overlay"></div>
+                <div class="program-card-content">
+                  <h3>Mathematics</h3>
+                  <p>Pure and applied mathematical thinking for science and technology.</p>
+                  <span>BSc</span>
+                </div>
+              </article>
+
+              <article class="program-card program-card-image"
+                style="--program-bg: url('https://www.kiu.edu.ge/uploads_script/services/ytn0lc6zqcidd3m.jpg');">
+                <div class="program-card-overlay"></div>
+                <div class="program-card-content">
+                  <h3>Management</h3>
+                  <p>Business, leadership, organization, and strategic decision-making.</p>
+                  <span>BSc</span>
+                </div>
+              </article>
+
+              <article class="program-card program-card-image"
+                style="--program-bg: url('https://www.kiu.edu.ge/uploads_script/services/j9bwqz018np7p1m.png');">
+                <div class="program-card-overlay"></div>
+                <div class="program-card-content">
+                  <h3>Physics</h3>
+                  <p>Scientific study of matter, energy, systems, and physical laws.</p>
+                  <span>BSc</span>
+                </div>
+              </article>
+
+              <article class="program-card program-card-image"
+                style="--program-bg: url('https://www.kiu.edu.ge/uploads_script/services/ygb1kgki7dpy7o2.png');">
+                <div class="program-card-overlay"></div>
+                <div class="program-card-content">
+                  <h3>Architecture</h3>
+                  <p>Design, planning, construction concepts, and spatial thinking.</p>
+                  <span>BA</span>
+                </div>
+              </article>
+
+              <article class="program-card program-card-image"
+                style="--program-bg: url('https://www.kiu.edu.ge/uploads_script/services/z2p0vfh882pdlvk.jpg');">
+                <div class="program-card-overlay"></div>
+                <div class="program-card-content">
+                  <h3>Design</h3>
+                  <p>Creative visual communication, product thinking, and design practice.</p>
+                  <span>BA</span>
+                </div>
+              </article>
+
+              <article class="program-card program-card-image"
+                style="--program-bg: url('https://www.kiu.edu.ge/uploads_script/services/e77ywif2jffi8b9.jpg');">
+                <div class="program-card-overlay"></div>
+                <div class="program-card-content">
+                  <h3>Psychology</h3>
+                  <p>Human behavior, cognition, mental processes, and social interaction.</p>
+                  <span>BA</span>
+                </div>
+              </article>
+
+              <article class="program-card program-card-image"
+                style="--program-bg: url('https://www.kiu.edu.ge/uploads_script/services/fuqu1ncb2iy72l3.jpg');">
+                <div class="program-card-overlay"></div>
+                <div class="program-card-content">
+                  <h3>Law</h3>
+                  <p>Legal systems, public institutions, rights, and legal reasoning.</p>
+                  <span>LLB</span>
+                </div>
+              </article>
+
+            </div>
+
+            <div class="program-content single-cycle-content">
+              <article class="program-card program-card-image"
+                style="--program-bg: url('https://www.kiu.edu.ge/uploads_script/services/19htamplwpf0dtt.jpg');">
+                <div class="program-card-overlay"></div>
+                <div class="program-card-content">
+                  <h3>Medicine</h3>
+                  <p>Integrated medical education with clinical and scientific preparation.</p>
+                  <span>MD</span>
+                </div>
+              </article>
+            </div>
+
+            <div class="program-content master-content">
+
+              <article class="program-card program-card-image"
+                style="--program-bg: url('https://www.kiu.edu.ge/uploads_script/services/xs62qpn8m61uigq.jpg');">
+                <div class="program-card-overlay"></div>
+                <div class="program-card-content">
+                  <h3>Intellectual Property, Innovations and Entrepreneurship</h3>
+                  <p>Innovation management, intellectual property, and entrepreneurial development.</p>
+                  <span>MA</span>
+                </div>
+              </article>
+
+              <article class="program-card program-card-image"
+                style="--program-bg: url('https://www.kiu.edu.ge/uploads_script/services/h9fhv870q9xy78p.jpg');">
+                <div class="program-card-overlay"></div>
+                <div class="program-card-content">
+                  <h3>Embedded Computing Systems</h3>
+                  <p>Hardware-aware software, embedded systems, and intelligent devices.</p>
+                  <span>MSc</span>
+                </div>
+              </article>
+
+              <article class="program-card program-card-image"
+                style="--program-bg: url('https://www.kiu.edu.ge/uploads_script/services/hd55m8pqflk46d7.jpg');">
+                <div class="program-card-overlay"></div>
+                <div class="program-card-content">
+                  <h3>Finance and Information Management</h3>
+                  <p>Finance, data, information systems, and management technologies.</p>
+                  <span>MSc</span>
+                </div>
+              </article>
+
+            </div>
+
+            <div class="program-content doctoral-content">
+              <div class="empty-program-state">
+                <h3>Doctoral Programs</h3>
+                <p>
+                  Doctoral program information will be added later.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- Student Services Section -->
+      <section id="services" class="services-section section-padding">
+        <div class="container">
+
+          <div class="section-heading">
+            <p class="section-label">Student Services</p>
+            <h2>Campus and Dormitory Requests</h2>
+            <p>
+              Select the desired service and complete the related request form.
+            </p>
+          </div>
+
+          <input type="checkbox" id="services-toggle" class="services-toggle-input">
+
+          <label for="services-toggle" class="services-toggle-button">
+            <span class="services-toggle-text open-text">Open Student Services</span>
+            <span class="services-toggle-text close-text">Close Student Services</span>
+            <span class="services-toggle-icon">⌄</span>
+          </label>
+
+          <div class="services-collapsible">
+
+            <!-- Student Verification Area -->
+            <div class="student-verification">
+              <div class="verification-icon">🔒</div>
+
+              <div class="verification-text">
+                <h3>Student Verification Required</h3>
+                <p>
+                  These services are available only for registered KIU students. Please use
+                  your KIU email before submitting a request.
+                </p>
+              </div>
+
+              <form class="verification-form" action="#" method="post">
+                <div class="form-group">
+                  <label for="login-email">KIU Email</label>
+                  <input type="email" id="login-email" name="login-email" placeholder="your.name@students.kiu.ac.ge"
+                    required>
+                </div>
+
+                <div class="form-group">
+                  <label for="login-password">Password</label>
+                  <input type="password" id="login-password" name="login-password" placeholder="Enter your password"
+                    required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Continue to Services</button>
+              </form>
+            </div>
+
+            <!-- CSS-only service tabs -->
+            <div class="request-panel">
+
+              <input type="radio" name="request-type" id="visitor-request" checked>
+              <input type="radio" name="request-type" id="courier-request">
+              <input type="radio" name="request-type" id="room-request">
+              <input type="radio" name="request-type" id="key-request">
+              <input type="radio" name="request-type" id="curfew-request">
+
+              <div class="request-tabs" role="tablist" aria-label="Student request categories">
+                <label for="visitor-request">Register Visitor</label>
+                <label for="courier-request">Courier / Taxi</label>
+                <label for="room-request">Open Room</label>
+                <label for="key-request">Lost Key</label>
+                <label for="curfew-request">Night Curfew</label>
+              </div>
+
+              <div class="request-note">
+                <strong>Please note:</strong>
+                Only students living in the dormitory can register a visitor.
+                A student can register a maximum of five visitors per date.
+              </div>
+
+              <form class="request-form request-form-panel visitor-form" action="#" method="post">
+                <div class="form-intro">
+                  <h3>Register Visitor</h3>
+                  <p>
+                    Complete this form to request one-day visitor access to campus or the dormitory.
+                    The visitor pass is valid until 23:00.
+                  </p>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="visitor-date">Date of Visit</label>
+                    <input type="date" id="visitor-date" name="visitor-date" required>
+                    <small>Visitor pass is valid until 23:00.</small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="visitor-id">Visitor ID Number</label>
+                    <input type="text" id="visitor-id" name="visitor-id" placeholder="ID number or passport number"
+                      required>
+                    <small>For foreign visitors, enter the passport number.</small>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="visitor-name">Visitor Name and Surname</label>
+                    <input type="text" id="visitor-name" name="visitor-name" placeholder="Enter visitor full name"
+                      required>
+                    <small>For foreign visitors, write the name in Latin script as shown in the document.</small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="visitor-phone">Visitor Contact Information</label>
+                    <input type="tel" id="visitor-phone" name="visitor-phone" placeholder="Mobile phone number"
+                      required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="visitor-plate">Vehicle License Plate</label>
+                  <input type="text" id="visitor-plate" name="visitor-plate" placeholder="Example: AB-123-CD">
+                  <small>
+                    Accepted Georgian plate formats: AB-123-CD, 1234 AB, AB 123, or 123 AB 45.
+                    Vehicles without a license plate will not be allowed on campus.
+                  </small>
+                </div>
+
+                <div class="form-group">
+                  <label for="visitor-notes">Notes Optional</label>
+                  <textarea id="visitor-notes" name="visitor-notes" rows="4"
+                    placeholder="Additional information about the visit..."></textarea>
+                </div>
+
+                <label class="confirmation-check">
+                  <input type="checkbox" name="visitor-confirmation" required>
+                  I confirm that the information provided is accurate.
+                </label>
+
+                <button type="submit" class="btn btn-primary">Submit Request</button>
+              </form>
+
+
+              <form class="request-form request-form-panel courier-form" action="#" method="post">
+                <div class="form-intro">
+                  <h3>Call Courier / Taxi</h3>
+                  <p>
+                    Complete this form to request access for a courier or taxi.
+                    This service is intended for authorized staff use only.
+                  </p>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="courier-date">Arrival Date</label>
+                    <input type="date" id="courier-date" name="courier-date" required>
+                    <small>The pass is valid until 23:00.</small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="courier-company">Company or Courier Identifier</label>
+                    <input type="text" id="courier-company" name="courier-company"
+                      placeholder="Company name, courier name, or identifier" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="courier-plate">Vehicle License Plate</label>
+                  <input type="text" id="courier-plate" name="courier-plate" placeholder="Example: AB-123-CD or AB 1234"
+                    required>
+                  <small>
+                    Accepted plate formats: AB-123-CD or AB 1234 for civil vehicles,
+                    1234 AB for transit, AB 123 for military, and 123 AB 45 for diplomatic vehicles.
+                    A vehicle without a license plate will not be allowed on campus.
+                  </small>
+                </div>
+
+                <div class="form-group">
+                  <label for="courier-notes">Notes Optional</label>
+                  <textarea id="courier-notes" name="courier-notes" rows="4"
+                    placeholder="Add any extra information about the courier or taxi request..."></textarea>
+                </div>
+
+                <label class="confirmation-check">
+                  <input type="checkbox" name="courier-confirmation" required>
+                  I confirm that the information provided is accurate.
+                </label>
+
+                <button type="submit" class="btn btn-primary">Submit Request</button>
+              </form>
+
+
+              <form class="request-form request-form-panel room-form" action="#" method="post">
+                <div class="form-intro">
+                  <h3>Open My Room to Another Person</h3>
+                  <p>
+                    Use this form to request dormitory administration to open your room
+                    for a specified person.
+                  </p>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="room-person-id">Authorized Person ID Number</label>
+                    <input type="text" id="room-person-id" name="room-person-id"
+                      placeholder="ID number or passport number" required>
+                    <small>For foreign citizens, enter the passport number.</small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="room-person-name">Authorized Person Name and Surname</label>
+                    <input type="text" id="room-person-name" name="room-person-name" placeholder="Enter full name"
+                      required>
+                    <small>For foreign citizens, write the name in Latin script as shown in the document.</small>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="room-person-phone">Contact Information</label>
+                    <input type="tel" id="room-person-phone" name="room-person-phone" placeholder="Mobile phone number"
+                      required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="room-open-date">Date for Room Access</label>
+                    <input type="date" id="room-open-date" name="room-open-date" required>
+                    <small>Indicate when the room should be opened for the specified person.</small>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="room-notes">Notes Optional</label>
+                  <textarea id="room-notes" name="room-notes" rows="4"
+                    placeholder="Add room number, time, or any additional details..."></textarea>
+                </div>
+
+                <label class="confirmation-check">
+                  <input type="checkbox" name="room-confirmation" required>
+                  I confirm that the information provided is accurate.
+                </label>
+
+                <button type="submit" class="btn btn-primary">Submit Request</button>
+              </form>
+
+
+              <form class="request-form request-form-panel key-form" action="#" method="post">
+                <div class="form-intro">
+                  <h3>Lost or Forgotten Room Key</h3>
+                  <p>
+                    Use this form to notify dormitory administration that you have lost or
+                    forgotten your room key and need one-time help opening the door.
+                  </p>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="key-date">Date Assistance Is Needed</label>
+                    <input type="date" id="key-date" name="key-date" required>
+                    <small>Indicate the date when you need help opening your room door.</small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="key-room">Dormitory Room Number</label>
+                    <input type="text" id="key-room" name="key-room" placeholder="Example: F-405" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="key-notes">Notes Optional</label>
+                  <textarea id="key-notes" name="key-notes" rows="4"
+                    placeholder="Explain the situation or add your current location..."></textarea>
+                </div>
+
+                <label class="confirmation-check">
+                  <input type="checkbox" name="key-confirmation" required>
+                  I confirm that the information provided is accurate.
+                </label>
+
+                <button type="submit" class="btn btn-primary">Submit Request</button>
+              </form>
+
+
+              <form class="request-form request-form-panel curfew-form" action="#" method="post">
+                <div class="form-intro">
+                  <h3>Night Curfew Exception</h3>
+                  <p>
+                    Use this form to request permission to enter campus during night curfew hours.
+                  </p>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="curfew-date">Date of Curfew Violation</label>
+                    <input type="date" id="curfew-date" name="curfew-date" required>
+                    <small>Indicate the date you need to enter campus during curfew hours.</small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="curfew-time">Expected Entry Time</label>
+                    <input type="time" id="curfew-time" name="curfew-time" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="curfew-reason">Reason for Curfew Exception</label>
+                  <textarea id="curfew-reason" name="curfew-reason" rows="4"
+                    placeholder="Explain the valid reason for entering during curfew hours..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="curfew-notes">Notes Optional</label>
+                  <textarea id="curfew-notes" name="curfew-notes" rows="4"
+                    placeholder="Add any extra information if needed..."></textarea>
+                </div>
+
+                <label class="confirmation-check">
+                  <input type="checkbox" name="curfew-confirmation" required>
+                  I confirm that the information provided is accurate.
+                </label>
+
+                <button type="submit" class="btn btn-primary">Submit Request</button>
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- Upcoming Events Section -->
+      <section id="events" class="events-section section-padding">
+        <div class="container">
+
+          <div class="section-heading">
+            <p class="section-label">Upcoming Events</p>
+            <h2>Important Campus Activities</h2>
+            <p>
+              Stay informed about academic, cultural, and student life events.
+            </p>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="events-table">
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Location</th>
+                  <th>Category</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>Student Orientation Day</td>
+                  <td>May 28</td>
+                  <td>10:00</td>
+                  <td>Main Auditorium</td>
+                  <td>Academic</td>
+                </tr>
+
+                <tr>
+                  <td>Research Symposium</td>
+                  <td>June 5</td>
+                  <td>09:30</td>
+                  <td>Conference Hall</td>
+                  <td>Research</td>
+                </tr>
+
+                <tr>
+                  <td>Career Fair</td>
+                  <td>June 12</td>
+                  <td>11:00</td>
+                  <td>Sports Complex</td>
+                  <td>Career</td>
+                </tr>
+
+                <tr>
+                  <td>Cultural Festival</td>
+                  <td>June 20</td>
+                  <td>16:00</td>
+                  <td>Campus Plaza</td>
+                  <td>Student Life</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- News Section -->
+      <section id="news" class="news-section section-padding">
+        <div class="container">
+
+          <div class="section-heading">
+            <p class="section-label">News</p>
+            <h2>Latest Portal Updates</h2>
+            <p>
+              Read recent university updates, announcements, and student-focused information.
+            </p>
+          </div>
+
+          <div class="news-grid">
+
+            <article class="news-card">
+              <img src="https://www.kiu.edu.ge/uploads_script/news/ix7tkfj8d9fkyvp.png"
+                alt="KIU representatives meeting with Maria Curie-Skłodowska University delegation">
+
+              <div class="news-content">
+                <p class="news-date">Apr 24, 2026</p>
+
+                <h3>
+                  KIU and Maria Curie-Skłodowska University Establish Cooperation
+                </h3>
+
+                <p>
+                  KIU welcomed a delegation from Maria Curie-Skłodowska University — UMCS in Lublin, Poland.
+                </p>
+              </div>
+            </article>
+
+            <article class="news-card">
+              <img src="https://www.kiu.edu.ge/uploads_script/news/ktj13oxl0kl6dvj.png"
+                alt="KIU and CERN representatives signing a memorandum of cooperation">
+
+              <div class="news-content">
+                <p class="news-date">Apr 24, 2026</p>
+
+                <h3>
+                  KIU, GTU, and CERN SHiP Collaboration Sign Memorandum
+                </h3>
+
+                <p>
+                  KIU, Georgian Technical University, and CERN’s SHiP Collaboration signed a trilateral memorandum of
+                  cooperation.
+                </p>
+              </div>
+            </article>
+
+            <article class="news-card">
+              <img src="https://www.kiu.edu.ge/uploads_script/news/utsako6it6brb99.jpeg"
+                alt="KIU and Kutaisi City Hall representatives signing a cooperation memorandum">
+
+              <div class="news-content">
+                <p class="news-date">Apr 17, 2026</p>
+
+                <h3>
+                  KIU and Kutaisi City Hall Sign UniverCity Memorandum
+                </h3>
+
+                <p>
+                  The UniverCity innovative hub will be established in Kutaisi through a memorandum between KIU and
+                  Kutaisi City Hall.
+                </p>
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- Video Gallery Section -->
+      <section id="gallery" class="gallery-section section-padding">
+        <div class="container">
+
+          <div class="section-heading">
+            <p class="section-label">Video Gallery</p>
+            <h2>Campus Media</h2>
+            <p>
+              Watch featured videos about KIU, campus life, and international academic cooperation.
+            </p>
+          </div>
+
+          <div class="gallery-layout">
+
+            <div class="main-video">
+              <video controls preload="metadata">
+                <source
+                  src="https://www.kiu.edu.ge/uploads/videos/Bidzina%20Ivanishvili%20&%20Ekaterina%20Khvedelidze.mp4"
+                  type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+
+            <div class="video-list">
+
+              <a href="https://www.kiu.edu.ge/uploads/videos/kampus2.mp4" class="video-card" target="_blank"
+                rel="noopener noreferrer">
+                <img src="https://www.kiu.edu.ge/uploads_script/video/qi8hwxrcbm2dnlt.png"
+                  alt="Campus life video thumbnail">
+                <div>
+                  <h3>Campus Life</h3>
+                  <p>Open video</p>
+                </div>
+              </a>
+
+              <a href="https://www.kiu.edu.ge/uploads/videos/Wolfgang%20A.%20Herrmann.mp4" class="video-card"
+                target="_blank" rel="noopener noreferrer">
+                <img src="https://www.kiu.edu.ge/uploads_script/video/sfs3mxtt0wel322.jpg"
+                  alt="TUM president speaking about KIU video thumbnail">
+                <div>
+                  <h3>TUM President About KIU</h3>
+                  <p>Open video</p>
+                </div>
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+
+    <!-- Footer / Contact Section -->
+    <footer id="contact" class="site-footer">
+      <div class="container footer-container">
+
+        <section class="footer-map" aria-labelledby="map-title">
+          <h2 id="map-title">Find Us on Campus</h2>
+
+          <iframe src="https://www.google.com/maps?q=42.2091944,42.7167407&z=17&output=embed"
+            title="KIU campus location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </section>
+
+        <section class="footer-contact" aria-labelledby="contact-title">
+          <h2 id="contact-title">Contact Information</h2>
+
+          <ul>
+            <li>Legal address: Akhalgazrdoba Ave. Lane 5/7, Kutaisi, 4600 Georgia </li>
+            <li>For international student and visitor enquiries: international@kiu.edu.ge</li>
+            <li>Phone: (+995) 577 477197</li>
+            <li>Email: info@kiu.com</li>
+          </ul>
+        </section>
+
+        <section class="footer-links" aria-labelledby="links-title">
+          <h2 id="links-title">Useful Links</h2>
+
+          <ul>
+            <li>
+              <a href="https://www.tum.de/en/" target="_blank">
+                Technical University of Munich
+              </a>
+            </li>
+
+            <li>
+              <a href="#" target="_blank">
+                Campus Tour / Open Days
+              </a>
+            </li>
+
+            <li>
+              <a href="https://mes.gov.ge/" target="_blank">
+                Ministry of Education, Science and Youth of Georgia
+              </a>
+            </li>
+
+            <li>
+              <a href="https://naec.ge/" target="_blank">
+                National Assessment and Examinations Center
+              </a>
+            </li>
+          </ul>
+        </section>
+
+      </div>
+
+      <div class="container footer-bottom">
+        <p>&copy; 2024 KIU Student Portal. All rights reserved.</p>
+
+        <div class="social-links">
+          <a href="https://www.facebook.com/KutaisiInternationalUniversity/" target="_blank" aria-label="Facebook">
+            Facebook
+          </a>
+
+          <a href="https://www.youtube.com/@KutaisiInternationalUniversity" target="_blank" aria-label="YouTube">
+            YouTube
+          </a>
+
+          <a href="https://www.linkedin.com/school/kiueduge/posts/?feedView=all" target="_blank" aria-label="LinkedIn">
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating Help Assistant -->
+    <aside class="floating-assistant" aria-label="KIU support assistant">
+
+      <input type="checkbox" id="assistant-toggle">
+
+      <label for="assistant-toggle" class="assistant-button">
+        <span class="assistant-bubble">Need help?</span>
+        <span class="assistant-avatar">👋</span>
+      </label>
+
+      <div class="assistant-panel">
+        <div class="assistant-header">
+          <h2>KIU Assistant</h2>
+          <label for="assistant-toggle" aria-label="Close assistant">×</label>
+        </div>
+
+        <form action="#" method="post" class="assistant-form">
+
+          <label for="assistant-topic">Topic</label>
+          <select id="assistant-topic" name="assistant-topic" required>
+            <option value="general">General Question</option>
+            <option value="admissions">Admissions Information</option>
+            <option value="academic-office">Academic Office</option>
+            <option value="international">International Students</option>
+            <option value="campus-navigation">Campus Navigation</option>
+            <option value="technical-support">Technical Support</option>
+            <option value="urgent-help">Emergency / Urgent Help</option>
+          </select>
+
+          <label for="assistant-email">Email Address</label>
+          <input type="email" id="assistant-email" name="assistant-email"
+            placeholder="student@kiu.edu.ge or personal email" required>
+
+          <label for="assistant-message">Message</label>
+          <textarea id="assistant-message" name="assistant-message" rows="4" placeholder="Type your message..."
+            required></textarea>
+
+          <button type="submit">Send Message</button>
+
+          <p class="assistant-note">
+            Responses are sent to the email address provided above.
+          </p>
+        </form>
+      </div>
+
+    </aside>
+
+  </div>
+
+</body>
+
+</html>

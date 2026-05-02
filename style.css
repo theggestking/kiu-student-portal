@@ -1098,31 +1098,45 @@ textarea {
 .radio-options {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 10px;
 }
 
 .radio-options label {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 11px 15px;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 18px;
   color: var(--primary-dark);
   background-color: var(--white);
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
   cursor: pointer;
   transition: var(--transition);
 }
 
 .radio-options label:hover {
+  color: var(--primary);
   border-color: var(--secondary);
+  background-color: rgba(32, 184, 199, 0.08);
   transform: translateY(-2px);
 }
 
 .radio-options input {
-  accent-color: var(--secondary);
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
 
+.radio-options label:has(input:checked) {
+  color: var(--white);
+  background: linear-gradient(135deg, var(--primary), var(--secondary-dark));
+  border-color: transparent;
+  box-shadow: 0 10px 22px rgba(32, 184, 199, 0.22);
+}
 
 /* ---------- Upcoming Events ---------- */
 
@@ -1976,6 +1990,18 @@ textarea {
   border-color: var(--border);
 }
 
+#theme-toggle:checked~.page .radio-options label:hover {
+  color: #ffffff;
+  border-color: var(--secondary);
+  background-color: rgba(32, 184, 199, 0.16);
+}
+
+#theme-toggle:checked~.page .radio-options label:has(input:checked) {
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--secondary), #0b7285);
+  border-color: transparent;
+}
+
 #theme-toggle:checked~.page .search-form input::placeholder,
 #theme-toggle:checked~.page .form-group input::placeholder,
 #theme-toggle:checked~.page .form-group textarea::placeholder,
@@ -2399,9 +2425,7 @@ textarea {
 
 /* ---------- Navbar Utility Items ---------- */
 
-.main-nav {
-  flex: 1;
-}
+/* Navbar utilities (search, mobile tools, language/theme items) */
 
 .mobile-menu-toggle-input {
   display: none;
@@ -2409,14 +2433,6 @@ textarea {
 
 .mobile-header-tools {
   display: none;
-}
-
-.nav-list {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 24px;
-  width: 100%;
 }
 
 .nav-search-item {

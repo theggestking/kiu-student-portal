@@ -1,9 +1,3 @@
-/* =========================================================
-   KIU Student Portal - style.css
-   Midterm Project: HTML + CSS only
-   ========================================================= */
-
-
 /* ---------- Global Styles ---------- */
 
 :root {
@@ -274,13 +268,11 @@ textarea {
   transition: var(--transition);
 }
 
-.nav-list a:hover,
-.nav-list a.active {
+.nav-list a:hover {
   color: var(--primary);
 }
 
-.nav-list a:hover::after,
-.nav-list a.active::after {
+.nav-list a:hover::after {
   width: 100%;
 }
 
@@ -297,8 +289,7 @@ textarea {
   transition: var(--transition);
 }
 
-.language-switch a:hover,
-.language-switch a.active {
+.language-switch a:hover {
   color: var(--primary);
 }
 
@@ -1258,7 +1249,6 @@ textarea {
   background-color: var(--primary-dark);
 }
 
-.main-video iframe,
 .main-video video {
   width: 100%;
   height: 100%;
@@ -1826,12 +1816,9 @@ textarea {
 }
 
 #theme-toggle:checked~.page .site-footer {
+  color: #ffffff;
   background:
     linear-gradient(135deg, #031225, #062b5f);
-}
-
-#theme-toggle:checked~.page .site-footer {
-  color: #ffffff;
 }
 
 #theme-toggle:checked~.page .site-footer h2 {
@@ -1894,15 +1881,6 @@ textarea {
 #theme-toggle:checked~.page .nav-list a:hover {
   color: var(--secondary);
   background: transparent;
-}
-
-#theme-toggle:checked~.page .nav-list a.active {
-  color: var(--text);
-  background: transparent;
-}
-
-#theme-toggle:checked~.page .nav-list a.active::after {
-  width: 0;
 }
 
 #theme-toggle:checked~.page .hero-section {
@@ -2047,10 +2025,6 @@ textarea {
   background-color: rgba(32, 184, 199, 0.12);
 }
 
-#theme-toggle:checked~.page .footer-links a {
-  background-color: rgba(255, 255, 255, 0.08);
-}
-
 #theme-toggle:checked~.page .map-modal-content,
 #theme-toggle:checked~.page .map-modal-close {
   background-color: #0f2a4d;
@@ -2058,15 +2032,6 @@ textarea {
 
 #theme-toggle:checked~.page .map-modal-close {
   color: #ffffff;
-}
-
-#theme-toggle:checked~.page .modal-content {
-  background-color: #0f2a4d;
-}
-
-#theme-toggle:checked~.page .modal-close {
-  color: var(--primary-dark);
-  background-color: #0f2a4d;
 }
 
 #theme-toggle:checked~.page .assistant-header label {
@@ -2403,7 +2368,6 @@ textarea {
   }
 
   .main-video,
-  .main-video iframe,
   .main-video video {
     min-height: 250px;
   }
@@ -2506,11 +2470,6 @@ textarea {
 /* ---------- Mobile Header / Hamburger Menu ---------- */
 
 @media (max-width: 768px) {
-  .site-header {
-    position: sticky;
-    top: 0;
-  }
-
   .header-container {
     min-height: 72px;
     display: flex;
@@ -2632,8 +2591,7 @@ textarea {
     display: none;
   }
 
-  .nav-list a:hover,
-  .nav-list a.active {
+  .nav-list a:hover {
     color: var(--white);
     background: linear-gradient(135deg, var(--primary), var(--secondary-dark));
   }
@@ -2673,9 +2631,7 @@ textarea {
 }
 
 @media (max-width: 768px) {
-
-  #theme-toggle:checked~.page .nav-list a:hover,
-  #theme-toggle:checked~.page .nav-list a.active {
+  #theme-toggle:checked~.page .nav-list a:hover {
     color: #ffffff;
     background: linear-gradient(135deg, var(--secondary), #0b7285);
   }

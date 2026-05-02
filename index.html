@@ -33,9 +33,11 @@
           <img src="https://www.kiu.edu.ge/images/logo-white-01.svg" alt="KIU logo" class="logo-dark">
         </a>
 
+        <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle-input">
+
         <nav class="main-nav" aria-label="Main navigation">
           <ul class="nav-list">
-            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#programs">Programs</a></li>
             <li><a href="#services">Services</a></li>
@@ -43,9 +45,17 @@
             <li><a href="#news">News</a></li>
             <li><a href="#contact">Contact</a></li>
 
+            <li class="nav-search-item">
+              <form class="search-form" action="#" method="get">
+                <label for="site-search" class="visually-hidden">Search</label>
+                <input type="search" id="site-search" name="search" placeholder="Search...">
+                <button type="submit" aria-label="Search">⌕</button>
+              </form>
+            </li>
+
             <li class="nav-language-item">
               <div class="language-switch" aria-label="Language switch">
-                <a href="#" class="active">EN</a>
+                <a href="#">EN</a>
                 <span>|</span>
                 <a href="#">KA</a>
               </div>
@@ -60,9 +70,27 @@
           </ul>
         </nav>
 
+        <div class="mobile-header-tools">
+          <div class="language-switch" aria-label="Language switch">
+            <a href="#">EN</a>
+            <span>|</span>
+            <a href="#">KA</a>
+          </div>
+
+          <label for="theme-toggle" class="theme-toggle" aria-label="Toggle dark and light mode">
+            <span class="theme-toggle-icon sun">☀️</span>
+            <span class="theme-toggle-icon moon">🌙</span>
+          </label>
+
+          <label for="mobile-menu-toggle" class="mobile-menu-button" aria-label="Open navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
+
       </div>
     </header>
-
 
     <main>
 

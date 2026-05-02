@@ -2439,3 +2439,75 @@ textarea {
     height: 58px;
   }
 }
+
+/* ---------- Mobile Header Layout Fix ---------- */
+
+@media (max-width: 768px) {
+  .header-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .logo {
+    order: 1;
+  }
+
+  .header-actions {
+    display: contents;
+  }
+
+  .search-form {
+    order: 2;
+    width: 100%;
+  }
+
+  .main-nav {
+    order: 3;
+    width: auto;
+    flex: 1;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    overflow-x: visible;
+    padding-bottom: 0;
+  }
+
+  .language-switch {
+    order: 4;
+    flex-shrink: 0;
+  }
+
+  .theme-toggle {
+    order: 5;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-actions {
+    display: contents;
+  }
+
+  .search-form {
+    width: 100%;
+  }
+
+  .main-nav {
+    width: auto;
+    flex: 1;
+  }
+
+  .language-switch {
+    justify-content: flex-start;
+  }
+
+  .theme-toggle {
+    width: 52px;
+  }
+}

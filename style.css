@@ -454,6 +454,14 @@ textarea {
   background-color: var(--white);
 }
 
+.about-kiu-section {
+  background-color: var(--light);
+}
+
+.campus-life-section {
+  background-color: var(--white);
+}
+
 .two-column-layout {
   display: flex;
   align-items: center;
@@ -973,6 +981,185 @@ textarea {
 }
 
 
+/* ---------- Open Day / Campus Visit ---------- */
+
+.open-day-section {
+  background-color: var(--light);
+}
+
+.open-day-card {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 28px;
+  padding: 34px;
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.open-day-content h2 {
+  color: var(--primary-dark);
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.open-day-content>p {
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.open-day-info {
+  display: flex;
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.open-day-info article {
+  flex: 1;
+  padding: 18px;
+  background-color: var(--light);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.open-day-info h3 {
+  color: var(--primary-dark);
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.open-day-info p {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.open-day-image {
+  min-height: 320px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.open-day-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+}
+
+.open-day-form-toggle-input {
+  display: none;
+}
+
+.open-day-form-toggle-button {
+  grid-column: 1 / -1;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 22px;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--primary), var(--secondary-dark));
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.open-day-form-toggle-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(20, 139, 152, 0.24);
+}
+
+.open-day-toggle-icon {
+  font-size: 1.2rem;
+  transition: var(--transition);
+}
+
+.open-day-close-text {
+  display: none;
+}
+
+.open-day-form-collapsible {
+  grid-column: 1 / -1;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-12px);
+  transition:
+    max-height 0.8s ease,
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+
+#open-day-form-toggle:checked~.open-day-form-toggle-button .open-day-open-text {
+  display: none;
+}
+
+#open-day-form-toggle:checked~.open-day-form-toggle-button .open-day-close-text {
+  display: inline;
+}
+
+#open-day-form-toggle:checked~.open-day-form-toggle-button .open-day-toggle-icon {
+  transform: rotate(180deg);
+}
+
+#open-day-form-toggle:checked~.open-day-form-collapsible {
+  max-height: 1800px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.open-day-form {
+  padding: 28px;
+  background-color: var(--light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.open-day-form h3 {
+  color: var(--primary-dark);
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+}
+
+.applicant-type-group {
+  border: none;
+  padding: 0;
+}
+
+.radio-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.radio-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 15px;
+  color: var(--primary-dark);
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.radio-options label:hover {
+  border-color: var(--secondary);
+  transform: translateY(-2px);
+}
+
+.radio-options input {
+  accent-color: var(--secondary);
+}
+
+
 /* ---------- Upcoming Events ---------- */
 
 .events-section {
@@ -1143,6 +1330,7 @@ textarea {
   font-size: 0.9rem;
 }
 
+
 /* ---------- Footer / Contact ---------- */
 
 .site-footer {
@@ -1177,12 +1365,61 @@ textarea {
   border-radius: 999px;
 }
 
-.footer-map iframe {
-  width: 100%;
+.map-preview {
+  position: relative;
   height: 220px;
-  border: none;
+  overflow: hidden;
   border-radius: 14px;
   background-color: var(--white);
+}
+
+.map-preview iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+.map-preview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(2, 28, 66, 0.28);
+  opacity: 0;
+  transition: var(--transition);
+  pointer-events: none;
+}
+
+.map-preview:hover::after {
+  opacity: 1;
+}
+
+.map-expand-button {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 2;
+  transform: translateY(10px);
+  padding: 10px 16px;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--primary), var(--secondary-dark));
+  border-radius: 10px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+}
+
+.map-preview:hover .map-expand-button {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.map-expand-button:hover {
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
 }
 
 .footer-contact li,
@@ -1239,6 +1476,71 @@ textarea {
   transform: translateY(-3px);
 }
 
+/* ---------- Expanded Map Modal ---------- */
+
+.map-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.map-modal:target {
+  display: flex;
+}
+
+.map-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(2, 18, 37, 0.78);
+  backdrop-filter: blur(5px);
+}
+
+.map-modal-content {
+  position: relative;
+  z-index: 1;
+  width: min(1050px, 92vw);
+  height: min(620px, 78vh);
+  overflow: hidden;
+  background-color: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+  animation: modalFadeIn 0.35s ease both;
+}
+
+.map-modal-content iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+.map-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  color: var(--primary-dark);
+  background-color: var(--white);
+  border-radius: 50%;
+  font-size: 1.6rem;
+  font-weight: 600;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.map-modal-close:hover {
+  color: var(--white);
+  background-color: var(--secondary);
+  transform: scale(1.08);
+}
 
 /* ---------- Floating Assistant ---------- */
 
@@ -1249,7 +1551,9 @@ textarea {
   z-index: 1200;
 }
 
-#assistant-toggle {
+#assistant-toggle,
+.assistant-tabs>input,
+.utility-tabs>input {
   display: none;
 }
 
@@ -1288,8 +1592,10 @@ textarea {
 .assistant-panel {
   position: absolute;
   right: 0;
-  bottom: 86px;
-  width: 330px;
+  bottom: 72px;
+  width: 380px;
+  max-height: 70vh;
+  overflow-y: auto;
   padding: 18px;
   background-color: var(--white);
   color: var(--text);
@@ -1312,7 +1618,7 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .assistant-header h2 {
@@ -1332,9 +1638,163 @@ textarea {
   line-height: 1;
 }
 
-.assistant-panel p {
+.assistant-tab-labels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.assistant-tab-labels label {
+  padding: 10px 12px;
+  text-align: center;
+  color: var(--primary-dark);
+  background-color: var(--light);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+#assistant-utilities:checked~.assistant-tab-labels label[for="assistant-utilities"],
+#assistant-message:checked~.assistant-tab-labels label[for="assistant-message"] {
+  color: var(--white);
+  background: linear-gradient(135deg, var(--primary), var(--secondary-dark));
+  border-color: transparent;
+}
+
+.assistant-tab-content {
+  display: none;
+}
+
+#assistant-utilities:checked~.assistant-utilities-content,
+#assistant-message:checked~.assistant-message-content {
+  display: block;
+  animation: fadeInUp 0.3s ease both;
+}
+
+.utility-tab-labels {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.utility-tab-labels label {
+  padding: 11px 13px;
+  color: var(--primary-dark);
+  background-color: var(--light);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.utility-tab-labels label:hover {
+  border-color: var(--secondary);
+  transform: translateY(-2px);
+}
+
+#utility-calendar:checked~.utility-tab-labels label[for="utility-calendar"],
+#utility-directory:checked~.utility-tab-labels label[for="utility-directory"] {
+  color: var(--white);
+  background: linear-gradient(135deg, var(--secondary-dark), var(--primary));
+  border-color: transparent;
+}
+
+.utility-content {
+  display: none;
+}
+
+#utility-calendar:checked~.calendar-content,
+#utility-directory:checked~.directory-content {
+  display: block;
+  animation: fadeInUp 0.3s ease both;
+}
+
+.utility-content h3 {
+  color: var(--primary-dark);
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+.calendar-block,
+.directory-block {
+  padding: 13px;
+  margin-bottom: 12px;
+  background-color: var(--light);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.calendar-block h4,
+.directory-block h4 {
+  color: var(--primary-dark);
+  font-size: 0.86rem;
+  margin-bottom: 10px;
+}
+
+.calendar-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.calendar-row:last-child {
+  border-bottom: none;
+}
+
+.calendar-row span {
   color: var(--muted);
-  font-size: 0.92rem;
+  font-size: 0.76rem;
+}
+
+.calendar-row strong {
+  color: var(--primary-dark);
+  font-size: 0.74rem;
+  text-align: right;
+}
+
+.directory-block ul {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.directory-block li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.directory-block li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.directory-block span {
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+.directory-block strong {
+  color: var(--primary-dark);
+  font-size: 0.78rem;
+  word-break: break-word;
+}
+
+.assistant-small-text {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
   margin-bottom: 14px;
 }
 
@@ -1445,14 +1905,17 @@ textarea {
 }
 
 #theme-toggle:checked~.page .about-section,
+#theme-toggle:checked~.page .campus-life-section,
 #theme-toggle:checked~.page .services-section,
 #theme-toggle:checked~.page .news-section {
   background-color: #071a33;
 }
 
 #theme-toggle:checked~.page .programs-section,
+#theme-toggle:checked~.page .about-kiu-section,
 #theme-toggle:checked~.page .events-section,
-#theme-toggle:checked~.page .gallery-section {
+#theme-toggle:checked~.page .gallery-section,
+#theme-toggle:checked~.page .open-day-section {
   background-color: #0b213d;
 }
 
@@ -1462,7 +1925,10 @@ textarea {
 #theme-toggle:checked~.page .video-card,
 #theme-toggle:checked~.page .table-wrapper,
 #theme-toggle:checked~.page .assistant-panel,
-#theme-toggle:checked~.page .empty-program-state {
+#theme-toggle:checked~.page .empty-program-state,
+#theme-toggle:checked~.page .open-day-card,
+#theme-toggle:checked~.page .open-day-form,
+#theme-toggle:checked~.page .open-day-info article {
   background-color: #0f2a4d;
   border-color: var(--border);
 }
@@ -1508,6 +1974,12 @@ textarea {
 #theme-toggle:checked~.page .assistant-form textarea {
   background-color: #071a33;
   color: var(--text);
+  border-color: var(--border);
+}
+
+#theme-toggle:checked~.page .radio-options label {
+  color: var(--text);
+  background-color: #071a33;
   border-color: var(--border);
 }
 
@@ -1560,6 +2032,15 @@ textarea {
   background-color: rgba(255, 255, 255, 0.08);
 }
 
+#theme-toggle:checked~.page .map-modal-content,
+#theme-toggle:checked~.page .map-modal-close {
+  background-color: #0f2a4d;
+}
+
+#theme-toggle:checked~.page .map-modal-close {
+  color: #ffffff;
+}
+
 #theme-toggle:checked~.page .modal-content {
   background-color: #0f2a4d;
 }
@@ -1571,6 +2052,29 @@ textarea {
 
 #theme-toggle:checked~.page .assistant-header label {
   background-color: #102541;
+}
+
+#theme-toggle:checked~.page .assistant-tab-labels label,
+#theme-toggle:checked~.page .utility-tab-labels label,
+#theme-toggle:checked~.page .calendar-block,
+#theme-toggle:checked~.page .directory-block {
+  background-color: #071a33;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+#theme-toggle:checked~.page .utility-content h3,
+#theme-toggle:checked~.page .calendar-block h4,
+#theme-toggle:checked~.page .directory-block h4,
+#theme-toggle:checked~.page .calendar-row strong,
+#theme-toggle:checked~.page .directory-block strong {
+  color: #ffffff;
+}
+
+#theme-toggle:checked~.page .calendar-row span,
+#theme-toggle:checked~.page .directory-block span,
+#theme-toggle:checked~.page .assistant-small-text {
+  color: var(--muted);
 }
 
 #theme-toggle:checked~.page .theme-toggle {
@@ -1706,6 +2210,10 @@ textarea {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .open-day-card {
+    grid-template-columns: 1fr;
+  }
+
   .student-verification {
     flex-direction: column;
     align-items: flex-start;
@@ -1787,6 +2295,31 @@ textarea {
     padding: 20px;
   }
 
+  .open-day-card {
+    padding: 22px;
+  }
+
+  .open-day-info {
+    flex-direction: column;
+  }
+
+  .open-day-form {
+    padding: 20px;
+  }
+
+  .open-day-form-toggle-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .radio-options {
+    flex-direction: column;
+  }
+
+  .radio-options label {
+    width: 100%;
+  }
+
   .news-card {
     flex-basis: 100%;
   }
@@ -1809,6 +2342,17 @@ textarea {
     align-items: flex-start;
   }
 
+  .map-modal-content {
+    width: 94vw;
+    height: 70vh;
+  }
+
+  .map-expand-button {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
   .floating-assistant {
     right: 16px;
     bottom: 76px;
@@ -1816,6 +2360,7 @@ textarea {
 
   .assistant-panel {
     width: calc(100vw - 32px);
+    max-height: 76vh;
     right: 0;
   }
 

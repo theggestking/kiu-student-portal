@@ -41,7 +41,6 @@
             <li><a href="#services">Services</a></li>
             <li><a href="#events">Events</a></li>
             <li><a href="#news">News</a></li>
-            <li><a href="#gallery">Gallery</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
@@ -87,7 +86,7 @@
 
             <div class="hero-buttons">
               <a href="#programs" class="btn btn-primary">Explore Programs</a>
-              <a href="#services" class="btn btn-outline">Student Services</a>
+              <a href="#open-day" class="btn btn-outline">Book Campus Visit</a>
             </div>
           </div>
 
@@ -129,6 +128,65 @@
         </div>
       </section>
 
+      <!-- About KIU Section -->
+      <section id="about-kiu" class="about-kiu-section section-padding">
+        <div class="container two-column-layout">
+
+          <div class="about-content">
+            <p class="section-label">About KIU</p>
+
+            <h2>A Place Where Knowledge Creates the Future</h2>
+
+            <p>
+              Kutaisi International University is a modern higher education institution
+              focused on academic excellence, innovation, and international perspectives.
+              KIU provides students with a contemporary learning environment where
+              education, research, and future opportunities come together.
+            </p>
+
+            <p>
+              The university is designed to support students through strong academic
+              programs, modern infrastructure, and a growing community of learning,
+              collaboration, and development.
+            </p>
+          </div>
+
+          <div class="about-image">
+            <img src="https://keystoneacademic-res.cloudinary.com/image/upload/c_limit,w_1920/dpr_auto/f_auto/q_auto/v1/element/17/178205_122814002_101031178482275_5380330633712281683_n.jpg" alt="Kutaisi International University campus building">
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- Campus Life Section -->
+      <section id="campus-life" class="campus-life-section section-padding">
+        <div class="container two-column-layout">
+
+          <div class="about-image">
+            <img src="https://keystoneacademic-res.cloudinary.com/image/upload/c_limit,w_1920/dpr_auto/f_auto/q_auto/v1/element/17/178775_DSC_4674_1.JPG" alt="Students experiencing campus life at KIU">
+          </div>
+
+          <div class="about-content">
+            <p class="section-label">Campus Life</p>
+
+            <h2>Study, Connect, and Grow on a Modern Campus</h2>
+
+            <p>
+              Campus life at KIU brings together learning, collaboration, and student
+              experience in one environment. The university campus offers modern
+              facilities, shared spaces, and opportunities for students to study,
+              connect, and participate in university life.
+            </p>
+
+            <p>
+              With its large campus area and student-centered atmosphere, KIU provides
+              a place where learning continues beyond the classroom.
+            </p>
+          </div>
+
+        </div>
+      </section>
 
       <!-- Academic Programs Section -->
       <section id="programs" class="programs-section section-padding">
@@ -310,6 +368,147 @@
         </div>
       </section>
 
+      <!-- Open Day / Campus Visit Section -->
+      <section id="open-day" class="open-day-section section-padding">
+        <div class="container">
+
+          <div class="open-day-card">
+
+            <div class="open-day-content">
+              <p class="section-label">Open Day</p>
+
+              <h2>Visit KIU Campus</h2>
+
+              <p>
+                Explore Kutaisi International University and discover what student life is like
+                on a modern 160-hectare campus.
+              </p>
+
+              <p>
+                During the campus visit, future students can learn about academic programs,
+                university facilities, student spaces, and the overall learning environment.
+              </p>
+
+              <div class="open-day-info">
+                <article>
+                  <h3>Who can apply?</h3>
+                  <p>
+                    School students, applicants, parents, and anyone interested in KIU academic programs
+                    may register for a campus visit.
+                  </p>
+                </article>
+
+                <article>
+                  <h3>What to expect?</h3>
+                  <p>
+                    A guided introduction to the campus, study areas, facilities, and student life at KIU.
+                  </p>
+                </article>
+              </div>
+            </div>
+
+            <div class="open-day-image">
+              <img
+                src="https://keystoneacademic-res.cloudinary.com/image/upload/c_limit,w_1920/dpr_auto/f_auto/q_auto/v1/element/17/178207_DormsEblock2.jpg"
+                alt="KIU campus view for open day visitors">
+            </div>
+
+            <input type="checkbox" id="open-day-form-toggle" class="open-day-form-toggle-input">
+
+            <label for="open-day-form-toggle" class="open-day-form-toggle-button">
+              <span class="open-day-open-text">Open Campus Visit Application</span>
+              <span class="open-day-close-text">Close Campus Visit Application</span>
+              <span class="open-day-toggle-icon">⌄</span>
+            </label>
+
+            <div class="open-day-form-collapsible">
+              <form class="open-day-form" action="#" method="post">
+                <h3>Campus Visit Application</h3>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="open-day-first-name">First Name</label>
+                    <input type="text" id="open-day-first-name" name="open-day-first-name"
+                      placeholder="Enter first name" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="open-day-last-name">Last Name</label>
+                    <input type="text" id="open-day-last-name" name="open-day-last-name" placeholder="Enter last name"
+                      required>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="open-day-id">ID Number</label>
+                    <input type="text" id="open-day-id" name="open-day-id" placeholder="Enter ID number" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="open-day-program">Program of Interest</label>
+                    <select id="open-day-program" name="open-day-program" required>
+                      <option value="">Select program</option>
+                      <option value="mathematics-applications">Mathematics & Applications</option>
+                      <option value="computer-science">Computer Science</option>
+                      <option value="mathematics">Mathematics</option>
+                      <option value="management">Management</option>
+                      <option value="physics">Physics</option>
+                      <option value="architecture">Architecture</option>
+                      <option value="design">Design</option>
+                      <option value="psychology">Psychology</option>
+                      <option value="law">Law</option>
+                      <option value="medicine">Medicine</option>
+                      <option value="intellectual-property">Intellectual Property, Innovations and Entrepreneurship
+                      </option>
+                      <option value="embedded-computing">Embedded Computing Systems</option>
+                      <option value="finance-information-management">Finance and Information Management</option>
+                    </select>
+                  </div>
+                </div>
+
+                <fieldset class="form-group applicant-type-group">
+                  <legend>Applicant Type</legend>
+
+                  <div class="radio-options">
+                    <label>
+                      <input type="radio" name="applicant-type" value="school-student" required>
+                      School Student
+                    </label>
+
+                    <label>
+                      <input type="radio" name="applicant-type" value="parent">
+                      Parent
+                    </label>
+
+                    <label>
+                      <input type="radio" name="applicant-type" value="transfer-student">
+                      Transfer Student
+                    </label>
+
+                    <label>
+                      <input type="radio" name="applicant-type" value="other">
+                      Other
+                    </label>
+                  </div>
+                </fieldset>
+
+                <div class="form-group">
+                  <label for="open-day-message">Additional Notes</label>
+                  <textarea id="open-day-message" name="open-day-message" rows="4"
+                    placeholder="Write any special request or question..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                  Submit Application
+                </button>
+              </form>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
 
       <!-- Student Services Section -->
       <section id="services" class="services-section section-padding">
@@ -636,7 +835,6 @@
         </div>
       </section>
 
-
       <!-- Upcoming Events Section -->
       <section id="events" class="events-section section-padding">
         <div class="container">
@@ -836,9 +1034,15 @@
         <section class="footer-map" aria-labelledby="map-title">
           <h2 id="map-title">Find Us on Campus</h2>
 
-          <iframe src="https://www.google.com/maps?q=42.2091944,42.7167407&z=17&output=embed"
-            title="KIU campus location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
+          <div class="map-preview">
+            <iframe src="https://www.google.com/maps?q=42.2091944,42.7167407&z=17&output=embed"
+              title="KIU campus location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+
+            <a href="#map-modal" class="map-expand-button">
+              Expand Map
+            </a>
+          </div>
         </section>
 
         <section class="footer-contact" aria-labelledby="contact-title">
@@ -857,25 +1061,25 @@
 
           <ul>
             <li>
-              <a href="https://www.tum.de/en/" target="_blank">
+              <a href="https://www.tum.de/en/" target="_blank" rel="noopener noreferrer">
                 Technical University of Munich
               </a>
             </li>
 
             <li>
-              <a href="#" target="_blank">
+              <a href="#open-day">
                 Campus Tour / Open Days
               </a>
             </li>
 
             <li>
-              <a href="https://mes.gov.ge/" target="_blank">
+              <a href="https://mes.gov.ge/" target="_blank" rel="noopener noreferrer">
                 Ministry of Education, Science and Youth of Georgia
               </a>
             </li>
 
             <li>
-              <a href="https://naec.ge/" target="_blank">
+              <a href="https://naec.ge/" target="_blank" rel="noopener noreferrer">
                 National Assessment and Examinations Center
               </a>
             </li>
@@ -888,20 +1092,36 @@
         <p>&copy; 2024 KIU Student Portal. All rights reserved.</p>
 
         <div class="social-links">
-          <a href="https://www.facebook.com/KutaisiInternationalUniversity/" target="_blank" aria-label="Facebook">
+          <a href="https://www.facebook.com/KutaisiInternationalUniversity/" target="_blank" rel="noopener noreferrer"
+            aria-label="Facebook">
             Facebook
           </a>
 
-          <a href="https://www.youtube.com/@KutaisiInternationalUniversity" target="_blank" aria-label="YouTube">
+          <a href="https://www.youtube.com/@KutaisiInternationalUniversity" target="_blank" rel="noopener noreferrer"
+            aria-label="YouTube">
             YouTube
           </a>
 
-          <a href="https://www.linkedin.com/school/kiueduge/posts/?feedView=all" target="_blank" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/school/kiueduge/posts/?feedView=all" target="_blank"
+            rel="noopener noreferrer" aria-label="LinkedIn">
             LinkedIn
           </a>
         </div>
       </div>
     </footer>
+
+    <!-- Expanded Map Modal -->
+    <div id="map-modal" class="map-modal">
+      <a href="#contact" class="map-modal-overlay" aria-label="Close expanded map"></a>
+
+      <div class="map-modal-content">
+        <a href="#contact" class="map-modal-close" aria-label="Close expanded map">×</a>
+
+        <iframe src="https://www.google.com/maps?q=42.2091944,42.7167407&z=17&output=embed"
+          title="Expanded KIU campus location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
 
     <!-- Floating Help Assistant -->
     <aside class="floating-assistant" aria-label="KIU support assistant">
@@ -914,38 +1134,203 @@
       </label>
 
       <div class="assistant-panel">
+
         <div class="assistant-header">
           <h2>KIU Assistant</h2>
           <label for="assistant-toggle" aria-label="Close assistant">×</label>
         </div>
 
-        <form action="#" method="post" class="assistant-form">
+        <div class="assistant-tabs">
 
-          <label for="assistant-topic">Topic</label>
-          <select id="assistant-topic" name="assistant-topic" required>
-            <option value="general">General Question</option>
-            <option value="admissions">Admissions Information</option>
-            <option value="academic-office">Academic Office</option>
-            <option value="international">International Students</option>
-            <option value="campus-navigation">Campus Navigation</option>
-            <option value="technical-support">Technical Support</option>
-            <option value="urgent-help">Emergency / Urgent Help</option>
-          </select>
+          <input type="radio" name="assistant-mode" id="assistant-utilities" checked>
+          <input type="radio" name="assistant-mode" id="assistant-message">
 
-          <label for="assistant-email">Email Address</label>
-          <input type="email" id="assistant-email" name="assistant-email"
-            placeholder="student@kiu.edu.ge or personal email" required>
+          <div class="assistant-tab-labels">
+            <label for="assistant-utilities">Quick Utilities</label>
+            <label for="assistant-message">Message Office</label>
+          </div>
 
-          <label for="assistant-message">Message</label>
-          <textarea id="assistant-message" name="assistant-message" rows="4" placeholder="Type your message..."
-            required></textarea>
+          <!-- Quick Utilities -->
+          <div class="assistant-tab-content assistant-utilities-content">
 
-          <button type="submit">Send Message</button>
+            <div class="utility-tabs">
 
-          <p class="assistant-note">
-            Responses are sent to the email address provided above.
-          </p>
-        </form>
+              <input type="radio" name="utility-type" id="utility-calendar" checked>
+              <input type="radio" name="utility-type" id="utility-directory">
+
+              <div class="utility-tab-labels">
+                <label for="utility-calendar">Academic Calendar</label>
+                <label for="utility-directory">Contact Directory</label>
+              </div>
+
+              <!-- Academic Calendar -->
+              <div class="utility-content calendar-content">
+                <h3>Academic Calendar 2025–2026</h3>
+
+                <div class="calendar-block">
+                  <h4>Autumn Semester</h4>
+
+                  <div class="calendar-row">
+                    <span>Registration</span>
+                    <strong>15.09.2025 – 20.09.2025</strong>
+                  </div>
+
+                  <div class="calendar-row">
+                    <span>Lecture Period</span>
+                    <strong>22.09.2025 – 31.12.2025</strong>
+                  </div>
+
+                  <div class="calendar-row">
+                    <span>Final Exam Period</span>
+                    <strong>12.01.2026 – 31.01.2026</strong>
+                  </div>
+
+                  <div class="calendar-row">
+                    <span>Re-Examination Period</span>
+                    <strong>09.02.2026 – 21.02.2026</strong>
+                  </div>
+                </div>
+
+                <div class="calendar-block">
+                  <h4>Spring Semester</h4>
+
+                  <div class="calendar-row">
+                    <span>Registration</span>
+                    <strong>23.02.2026 – 28.02.2026</strong>
+                  </div>
+
+                  <div class="calendar-row">
+                    <span>Lecture Period</span>
+                    <strong>02.03.2026 – 13.06.2026</strong>
+                  </div>
+
+                  <div class="calendar-row">
+                    <span>Exam Period</span>
+                    <strong>22.06.2026 – 11.07.2026</strong>
+                  </div>
+
+                  <div class="calendar-row">
+                    <span>Re-Examination Period</span>
+                    <strong>20.07.2026 – 31.07.2026</strong>
+                  </div>
+
+                  <div class="calendar-row">
+                    <span>Internship Period</span>
+                    <strong>02.03.2026 – 12.09.2026</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Contact Directory -->
+              <div class="utility-content directory-content">
+                <h3>Contact Directory</h3>
+
+                <div class="directory-block">
+                  <h4>Campus Support</h4>
+
+                  <ul>
+                    <li>
+                      <span>IT / Technical Support</span>
+                      <strong>+995 XXX XXX XXX</strong>
+                    </li>
+
+                    <li>
+                      <span>Campus Security</span>
+                      <strong>+995 XXX XXX XXX</strong>
+                    </li>
+
+                    <li>
+                      <span>Dormitory Administration</span>
+                      <strong>+995 XXX XXX XXX</strong>
+                    </li>
+
+                    <li>
+                      <span>Student Services Desk</span>
+                      <strong>+995 XXX XXX XXX</strong>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="directory-block">
+                  <h4>School Emails</h4>
+
+                  <ul>
+                    <li>
+                      <span>Computer Science School</span>
+                      <strong>cs@kiu.edu.ge</strong>
+                    </li>
+
+                    <li>
+                      <span>Mathematics School</span>
+                      <strong>math@kiu.edu.ge</strong>
+                    </li>
+
+                    <li>
+                      <span>Management School</span>
+                      <strong>management@kiu.edu.ge</strong>
+                    </li>
+
+                    <li>
+                      <span>Physics School</span>
+                      <strong>physics@kiu.edu.ge</strong>
+                    </li>
+
+                    <li>
+                      <span>Law School</span>
+                      <strong>law@kiu.edu.ge</strong>
+                    </li>
+
+                    <li>
+                      <span>Medicine School</span>
+                      <strong>medicine@kiu.edu.ge</strong>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Message Office -->
+          <div class="assistant-tab-content assistant-message-content">
+
+            <p class="assistant-small-text">
+              Send a quick question to the relevant KIU office.
+            </p>
+
+            <form action="#" method="post" class="assistant-form">
+
+              <label for="assistant-topic">Topic</label>
+              <select id="assistant-topic" name="assistant-topic" required>
+                <option value="general">General Question</option>
+                <option value="admissions">Admissions Information</option>
+                <option value="academic-office">Academic Office</option>
+                <option value="international">International Students</option>
+                <option value="campus-navigation">Campus Navigation</option>
+                <option value="technical-support">Technical Support</option>
+                <option value="urgent-help">Emergency / Urgent Help</option>
+              </select>
+
+              <label for="assistant-email">Email Address</label>
+              <input type="email" id="assistant-email" name="assistant-email"
+                placeholder="student@kiu.edu.ge or personal email" required>
+
+              <label for="assistant-message-text">Message</label>
+              <textarea id="assistant-message-text" name="assistant-message" rows="4" placeholder="Type your message..."
+                required></textarea>
+
+              <button type="submit">Send Message</button>
+
+              <p class="assistant-note">
+                Responses are sent to the email address provided above.
+              </p>
+            </form>
+
+          </div>
+
+        </div>
+
       </div>
 
     </aside>

@@ -1,0 +1,1 @@
+console.log("Final project JavaScript connected successfully.");

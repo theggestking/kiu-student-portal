@@ -530,12 +530,197 @@ const initProjectForms = () => {
     initStudentVerification();
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  initThemeToggle();
-  initSmoothNavigation();
-  initSiteSearch();
-  initProgramExplorer();
-  initProjectForms();
+const CAMPUS_LOCATION = {
+    city: "Kutaisi",
+    country: "Georgia",
+    latitude: 42.2679,
+    longitude: 42.6946
+};
 
-  console.log("Final project JavaScript loaded successfully.");
+const WEATHER_CODE_LABELS = {
+    0: "Clear sky",
+    1: "Mainly clear",
+    2: "Partly cloudy",
+    3: "Overcast",
+    45: "Fog",
+    48: "Depositing rime fog",
+    51: "Light drizzle",
+    53: "Moderate drizzle",
+    55: "Dense drizzle",
+    61: "Slight rain",
+    63: "Moderate rain",
+    65: "Heavy rain",
+    71: "Slight snow",
+    73: "Moderate snow",
+    75: "Heavy snow",
+    80: "Slight rain showers",
+    81: "Moderate rain showers",
+    82: "Violent rain showers",
+    95: "Thunderstorm"
+};
+
+const getWeatherDescription = code =>
+    WEATHER_CODE_LABELS[code] || "Weather condition unavailable";
+
+const buildWeatherUrl = ({ latitude, longitude }) => {
+    const baseUrl = "https://api.open-meteo.com/v1/forecast";
+
+    const params = new URLSearchParams({
+        latitude,
+        longitude,
+        current: [
+            "temperature_2m",
+            "relative_humidity_2m",
+            "apparent_temperature",
+            "weather_code",
+            "wind_speed_10m"
+        ].join(","),
+        timezone: "auto"
+    });
+
+    return `${baseUrl}?${params.toString()}`;
+};
+
+const fetchCampusWeather = url =>
+    new Promise((resolve, reject) => {
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    reject(new Error("Weather API request failed."));
+                    return null;
+                }
+
+                return response.json();
+            })
+            .then(data => {
+                if (data) resolve(data);
+            })
+            .catch(error => reject(error));
+    });
+
+const createCampusWeatherTip = (apparentTemperature, callback) => {
+    setTimeout(() => {
+        if (apparentTemperature >= 30) {
+            callback("Campus tip: It feels hot. Carry water if you are visiting campus.");
+            return;
+        }
+
+        if (apparentTemperature <= 8) {
+            callback("Campus tip: It feels cold. Wear warm clothes before going outside.");
+            return;
+        }
+
+        callback("Campus tip: Weather looks comfortable for moving around campus.");
+    }, 400);
+};
+
+const renderCampusWeather = weatherData => {
+    const weatherCard = $("#campus-weather-card");
+    if (!weatherCard) return;
+
+    const {
+        current,
+        current_units: units
+    } = weatherData;
+
+    const {
+        temperature_2m,
+        apparent_temperature,
+        relative_humidity_2m,
+        weather_code,
+        wind_speed_10m,
+        time
+    } = current;
+
+    weatherCard.innerHTML = `
+    <div class="weather-main">
+      <span class="weather-location">${CAMPUS_LOCATION.city}, ${CAMPUS_LOCATION.country}</span>
+      <strong>${Math.round(temperature_2m)}${units.temperature_2m}</strong>
+      <p>${getWeatherDescription(weather_code)}</p>
+    </div>
+
+    <div class="weather-details">
+      <div>
+        <span>Feels like</span>
+        <strong>${Math.round(apparent_temperature)}${units.apparent_temperature}</strong>
+      </div>
+
+      <div>
+        <span>Humidity</span>
+        <strong>${relative_humidity_2m}${units.relative_humidity_2m}</strong>
+      </div>
+
+      <div>
+        <span>Wind</span>
+        <strong>${wind_speed_10m} ${units.wind_speed_10m}</strong>
+      </div>
+    </div>
+
+    <p class="weather-time">Last updated: ${new Date(time).toLocaleString()}</p>
+    <p class="weather-tip" id="campus-weather-tip">Preparing campus tip...</p>
+  `;
+
+    createCampusWeatherTip(apparent_temperature, tip => {
+        const tipElement = $("#campus-weather-tip");
+        if (tipElement) {
+            tipElement.textContent = tip;
+        }
+    });
+};
+
+const renderCampusWeatherError = message => {
+    const weatherCard = $("#campus-weather-card");
+    if (!weatherCard) return;
+
+    weatherCard.innerHTML = `
+    <p class="weather-error">${message}</p>
+  `;
+};
+
+const loadCampusWeather = async () => {
+    const weatherCard = $("#campus-weather-card");
+    const refreshButton = $("#weather-refresh-btn");
+
+    if (!weatherCard || !refreshButton) return;
+
+    try {
+        refreshButton.disabled = true;
+        refreshButton.textContent = "Loading...";
+
+        weatherCard.innerHTML = `
+      <p class="weather-loading">Loading live weather data from the API...</p>
+    `;
+
+        const apiUrl = buildWeatherUrl(CAMPUS_LOCATION);
+        const weatherData = await fetchCampusWeather(apiUrl);
+
+        renderCampusWeather(weatherData);
+    } catch (error) {
+        renderCampusWeatherError(
+            "Could not load live weather data. Please check your internet connection and try again."
+        );
+        console.error(error);
+    } finally {
+        refreshButton.disabled = false;
+        refreshButton.textContent = "Refresh Weather";
+    }
+};
+
+const initCampusWeather = () => {
+    const refreshButton = $("#weather-refresh-btn");
+    if (!refreshButton) return;
+
+    refreshButton.addEventListener("click", loadCampusWeather);
+    loadCampusWeather();
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+    initThemeToggle();
+    initSmoothNavigation();
+    initSiteSearch();
+    initProgramExplorer();
+    initProjectForms();
+    initCampusWeather();
+
+    console.log("Final project JavaScript loaded successfully.");
 });

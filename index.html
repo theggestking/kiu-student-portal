@@ -41,6 +41,7 @@
             <li><a href="#about">About</a></li>
             <li><a href="#programs">Programs</a></li>
             <li><a href="#services">Services</a></li>
+            <li><a href="#campus-weather">Weather</a></li>
             <li><a href="#events">Events</a></li>
             <li><a href="#news">News</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -205,6 +206,41 @@
               With its large campus area and student-centered atmosphere, KIU provides
               a place where learning continues beyond the classroom.
             </p>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- Campus Weather API Section -->
+      <section id="campus-weather" class="campus-weather-section section-padding">
+        <div class="container">
+
+          <div class="section-heading">
+            <p class="section-label">Live API Data</p>
+            <h2>Campus Weather in Kutaisi</h2>
+            <p>
+              This section uses JavaScript Fetch API, Promises, and Async/Await to load live
+              weather data for Kutaisi.
+            </p>
+          </div>
+
+          <div class="weather-layout">
+            <article class="weather-card" id="campus-weather-card" aria-live="polite">
+              <p class="weather-loading">Weather data is ready to load.</p>
+            </article>
+
+            <div class="weather-info-panel">
+              <h3>Why this is useful</h3>
+              <p>
+                Students can quickly check current weather before travelling to campus,
+                attending events, or booking an Open Day visit.
+              </p>
+
+              <button class="btn btn-primary" type="button" id="weather-refresh-btn">
+                Load Live Weather
+              </button>
+            </div>
           </div>
 
         </div>

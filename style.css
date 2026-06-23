@@ -2849,3 +2849,72 @@ textarea {
   margin: 0;
   accent-color: var(--secondary);
 }
+
+/* JavaScript form validation and saved submission history */
+.has-error {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.16) !important;
+}
+
+.field-error {
+  display: block;
+  margin-top: 6px;
+  color: #dc3545;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.submission-history {
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--light);
+}
+
+.submission-history h4 {
+  margin-bottom: 12px;
+  color: var(--primary-dark);
+  font-size: 1rem;
+}
+
+.submission-history ul {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+}
+
+.submission-history li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background-color: var(--white);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.submission-history small {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+#theme-toggle:checked ~ .page .submission-history {
+  background-color: #08244d;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+#theme-toggle:checked ~ .page .submission-history h4 {
+  color: #e8f7ff;
+}
+
+#theme-toggle:checked ~ .page .submission-history li {
+  color: #e8f7ff;
+  background-color: #0d2f63;
+}
+
+#theme-toggle:checked ~ .page .submission-history small {
+  color: #b9d5ee;
+}

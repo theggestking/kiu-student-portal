@@ -646,8 +646,7 @@ html[lang="ka"] .hero-buttons .btn {
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
 }
 
-.program-card-content::after {
-  content: "Read More  →";
+.program-read-more-btn {
   width: fit-content;
   padding: 9px 15px;
   border-radius: 999px;
@@ -660,15 +659,22 @@ html[lang="ka"] .hero-buttons .btn {
   letter-spacing: 0.2px;
   opacity: 0;
   transform: translateY(14px);
+  cursor: pointer;
   transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
   backdrop-filter: blur(8px);
 }
 
-.program-card:hover .program-card-content::after {
+.program-card:hover .program-read-more-btn,
+.program-read-more-btn:focus-visible {
   opacity: 1;
   transform: translateY(0);
   box-shadow: 0 16px 30px rgba(32, 184, 199, 0.28);
+}
+
+.program-read-more-btn:focus-visible {
+  outline: 3px solid rgba(143, 243, 255, 0.8);
+  outline-offset: 3px;
 }
 
 .empty-program-state {
@@ -1645,6 +1651,80 @@ html[lang="ka"] .contact-label {
   transform: scale(1.08);
 }
 
+.program-joke-modal[hidden] {
+  display: none;
+}
+
+.program-joke-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2200;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.program-joke-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(2, 18, 37, 0.72);
+  border: none;
+  backdrop-filter: blur(5px);
+  cursor: pointer;
+}
+
+.program-joke-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(460px, 92vw);
+  padding: 30px;
+  color: var(--text);
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+  animation: modalFadeIn 0.35s ease both;
+}
+
+.program-joke-dialog h2 {
+  color: var(--primary-dark);
+  font-size: 1.8rem;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.program-joke-dialog p:not(.section-label) {
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+
+.program-joke-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  color: var(--primary-dark);
+  background-color: var(--light);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.program-joke-close:hover {
+  color: var(--white);
+  background-color: var(--secondary-dark);
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
 /* ---------- Floating Assistant ---------- */
 
 .floating-assistant {
@@ -2185,6 +2265,25 @@ html[lang="ka"] .assistant-bubble {
 
 #theme-toggle:checked~.page .map-modal-close {
   color: #ffffff;
+}
+
+#theme-toggle:checked~.page .program-joke-dialog {
+  color: #e8f7ff;
+  background-color: #0f2a4d;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+#theme-toggle:checked~.page .program-joke-dialog h2 {
+  color: #ffffff;
+}
+
+#theme-toggle:checked~.page .program-joke-dialog p:not(.section-label) {
+  color: #b9d5ee;
+}
+
+#theme-toggle:checked~.page .program-joke-close {
+  color: #e8f7ff;
+  background-color: #102541;
 }
 
 #theme-toggle:checked~.page .assistant-header label {
@@ -3090,6 +3189,7 @@ html[lang="ka"] .assistant-bubble {
   line-height: 1;
   cursor: pointer;
   transition: var(--transition);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
 }
 
 .program-favorite-btn:hover {
@@ -3100,6 +3200,26 @@ html[lang="ka"] .assistant-bubble {
 .program-favorite-btn.is-favorite {
   color: #ffe066;
   background-color: rgba(2, 28, 66, 0.72);
+}
+
+#theme-toggle:checked ~ .page .program-favorite-btn {
+  color: #e8f7ff;
+  background-color: rgba(232, 247, 255, 0.18);
+  border-color: rgba(143, 243, 255, 0.75);
+  box-shadow:
+    0 0 0 1px rgba(143, 243, 255, 0.16),
+    0 12px 24px rgba(0, 0, 0, 0.36);
+}
+
+#theme-toggle:checked ~ .page .program-favorite-btn:hover {
+  color: var(--primary-dark);
+  background-color: rgba(143, 243, 255, 0.92);
+}
+
+#theme-toggle:checked ~ .page .program-favorite-btn.is-favorite {
+  color: #021c42;
+  background-color: #ffe066;
+  border-color: #fff3bf;
 }
 
 #theme-toggle:checked ~ .page .program-tools,

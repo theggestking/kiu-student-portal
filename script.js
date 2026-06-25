@@ -29,6 +29,7 @@ const readFromStorage = (key, fallback = null) => {
 const SUPPORTED_LANGUAGES = ["en", "ka"];
 let currentLanguage = "en";
 let lastCampusWeatherData = null;
+let activeProgramModalTitle = "";
 
 const I18N = {
     en: {
@@ -113,6 +114,11 @@ const I18N = {
         "programs.noSavedMatchesText": "Try a different keyword or turn off the saved-only filter.",
         "programs.noMatches": "No matches for \"{query}\"",
         "programs.noMatchesText": "Try another keyword such as computer, law, design, or clear the search.",
+        "programs.readMore": "Read More →",
+        "programs.modalLabel": "Program Note",
+        "programs.modalTitle": "Nice try.",
+        "programs.modalText": "The full guide for {program} is still being prepared. Until then, read more books, save the program, and ask admissions.",
+        "programs.modalOk": "Back to Programs",
         "level.bachelor": "Bachelor",
         "level.singleCycle": "Single-Cycle",
         "level.master": "Master",
@@ -229,6 +235,11 @@ const I18N = {
         "programs.noSavedMatchesText": "სცადე სხვა სიტყვა ან გამორთე მხოლოდ შენახულების ფილტრი.",
         "programs.noMatches": "\"{query}\" ვერ მოიძებნა",
         "programs.noMatchesText": "სცადე სხვა სიტყვა, მაგალითად computer, law, design, ან გაასუფთავე ძებნა.",
+        "programs.readMore": "მეტის ნახვა →",
+        "programs.modalLabel": "პროგრამის შენიშვნა",
+        "programs.modalTitle": "კარგი მცდელობა.",
+        "programs.modalText": "{program}-ის სრული გზამკვლევი ჯერ მზადდება. მანამდე მეტი წიგნი წაიკითხე, პროგრამა შეინახე და მიმღებ კომისიას ჰკითხე.",
+        "programs.modalOk": "პროგრამებთან დაბრუნება",
         "level.bachelor": "ბაკალავრიატი",
         "level.singleCycle": "ერთსაფეხურიანი",
         "level.master": "მაგისტრატურა",
@@ -302,6 +313,9 @@ const TEXT_TRANSLATION_TARGETS = [
     ["#programs .section-heading .section-label", "programs.label"],
     ["#programs .section-heading h2", "programs.title"],
     ["#programs .section-heading p:nth-of-type(2)", "programs.text"],
+    [".program-joke-dialog .section-label", "programs.modalLabel"],
+    ["#program-joke-title", "programs.modalTitle"],
+    [".program-joke-ok", "programs.modalOk"],
     [".tab-labels label[for='bachelor-tab']", "level.bachelor"],
     [".tab-labels label[for='single-cycle-tab']", "level.singleCycle"],
     [".tab-labels label[for='master-tab']", "level.master"],
@@ -665,6 +679,54 @@ const formatProgramResultCount = ({ visibleCount, activeTotal, showFavoritesOnly
         : `${activeLabel} details coming soon.`;
 };
 
+const openProgramJokeModal = programTitle => {
+    const modal = $("#program-joke-modal");
+    const modalText = $("#program-joke-text");
+    const closeButton = $(".program-joke-close", modal);
+
+    if (!modal || !modalText) return;
+
+    activeProgramModalTitle = programTitle;
+    modalText.textContent = t("programs.modalText", { program: programTitle });
+    modal.hidden = false;
+    document.body.classList.add("modal-open");
+    closeButton?.focus();
+};
+
+const closeProgramJokeModal = () => {
+    const modal = $("#program-joke-modal");
+    if (!modal) return;
+
+    modal.hidden = true;
+    activeProgramModalTitle = "";
+    document.body.classList.remove("modal-open");
+};
+
+const initProgramJokeModal = () => {
+    const modal = $("#program-joke-modal");
+    if (!modal) return;
+
+    $$(".program-joke-backdrop, .program-joke-close, .program-joke-ok", modal).forEach(button => {
+        button.addEventListener("click", closeProgramJokeModal);
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && !modal.hidden) {
+            closeProgramJokeModal();
+        }
+    });
+
+    document.addEventListener("languagechange", () => {
+        const modalText = $("#program-joke-text");
+
+        if (!modal.hidden && modalText) {
+            modalText.textContent = t("programs.modalText", {
+                program: activeProgramModalTitle || "this program"
+            });
+        }
+    });
+};
+
 const initProgramExplorer = () => {
     const programsSection = $("#programs");
     if (!programsSection) return;
@@ -755,6 +817,19 @@ const initProgramExplorer = () => {
             );
         }
 
+        const cardContent = $(".program-card-content", card);
+
+        if (cardContent && !$(".program-read-more-btn", cardContent)) {
+            cardContent.insertAdjacentHTML(
+                "beforeend",
+                `
+          <button class="program-read-more-btn" type="button" data-program-id="${id}">
+            ${t("programs.readMore")}
+          </button>
+        `
+            );
+        }
+
         return program;
     });
 
@@ -773,6 +848,10 @@ const initProgramExplorer = () => {
             programSearchClearButton.setAttribute("aria-label", t("programs.clear"));
         }
         if (savedLabel) savedLabel.textContent = t("programs.savedOnly");
+
+        $$(".program-read-more-btn", programsSection).forEach(button => {
+            button.textContent = t("programs.readMore");
+        });
 
         $$(".program-empty-state-js", programsSection).forEach(emptyState => {
             const emptyTitle = $("h3", emptyState);
@@ -882,6 +961,14 @@ const initProgramExplorer = () => {
     };
 
     programsSection.addEventListener("click", event => {
+        const readMoreButton = event.target.closest(".program-read-more-btn");
+
+        if (readMoreButton) {
+            const program = programs.find(({ id }) => id === readMoreButton.dataset.programId);
+            openProgramJokeModal(program?.title || "this program");
+            return;
+        }
+
         const favoriteButton = event.target.closest(".program-favorite-btn");
         if (!favoriteButton) return;
 
@@ -1500,6 +1587,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initThemeToggle();
     initSmoothNavigation();
     initSiteSearch();
+    initProgramJokeModal();
     initProgramExplorer();
     initProjectForms();
     initContactCopy();

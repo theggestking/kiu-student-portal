@@ -47,6 +47,9 @@ const I18N = {
         "search.empty": "Type a word to search the portal.",
         "search.none": "No section matches \"{query}\". Try programs, weather, services, or contact.",
         "search.jumped": "Jumped to {section}.",
+        "verification.emailDomain": "Please use your real KIU email address.",
+        "verification.passwordLength": "Password must contain at least 4 characters.",
+        "verification.success": "Verification successful. You can now submit student service requests.",
         "section.home": "Home",
         "section.about": "About the Portal",
         "section.aboutKiu": "About KIU",
@@ -160,6 +163,9 @@ const I18N = {
         "search.empty": "ჩაწერე სიტყვა პორტალში მოსაძებნად.",
         "search.none": "\"{query}\" ვერ მოიძებნა. სცადე: პროგრამები, ამინდი, სერვისები ან კონტაქტი.",
         "search.jumped": "გადავედით სექციაზე: {section}.",
+        "verification.emailDomain": "გთხოვ, გამოიყენე შენი ნამდვილი KIU-ის ელფოსტა.",
+        "verification.passwordLength": "პაროლი უნდა შეიცავდეს მინიმუმ 4 სიმბოლოს.",
+        "verification.success": "ვერიფიკაცია წარმატებულია. ახლა შეგიძლია სტუდენტური მოთხოვნების გაგზავნა.",
         "section.home": "მთავარი",
         "section.about": "პორტალის შესახებ",
         "section.aboutKiu": "KIU-ის შესახებ",
@@ -1075,34 +1081,89 @@ const initStudentVerification = () => {
     const verificationForm = $(".verification-form");
     if (!verificationForm) return;
 
+    const emailInput = $("#login-email", verificationForm);
+    const passwordInput = $("#login-password", verificationForm);
+
+    if (!emailInput || !passwordInput) return;
+
+    const isKiuEmail = email =>
+        email.endsWith("@students.kiu.ac.ge") || email.endsWith("@kiu.edu.ge");
+
+    const clearVerificationVisuals = input => {
+        input.classList.remove("has-error");
+        $(".js-message", verificationForm)?.remove();
+    };
+
+    const updateEmailValidity = () => {
+        const email = emailInput.value.trim().toLowerCase();
+
+        clearVerificationVisuals(emailInput);
+        emailInput.setCustomValidity(email && !isKiuEmail(email) ? t("verification.emailDomain") : "");
+    };
+
+    const updatePasswordValidity = () => {
+        const password = passwordInput.value.trim();
+
+        clearVerificationVisuals(passwordInput);
+        passwordInput.setCustomValidity(
+            password && password.length < 4 ? t("verification.passwordLength") : ""
+        );
+    };
+
+    emailInput.addEventListener("input", updateEmailValidity);
+    passwordInput.addEventListener("input", updatePasswordValidity);
+    emailInput.addEventListener("invalid", () => {
+        emailInput.classList.add("has-error");
+    });
+    passwordInput.addEventListener("invalid", () => {
+        passwordInput.classList.add("has-error");
+    });
+
+    document.addEventListener("languagechange", () => {
+        updateEmailValidity();
+        updatePasswordValidity();
+    });
+
     verificationForm.addEventListener("submit", event => {
         event.preventDefault();
-
-        const emailInput = $("#login-email", verificationForm);
-        const passwordInput = $("#login-password", verificationForm);
 
         const email = emailInput.value.trim().toLowerCase();
         const password = passwordInput.value.trim();
 
         clearFormErrors(verificationForm);
+        updateEmailValidity();
+        updatePasswordValidity();
 
-        if (!email.endsWith("@students.kiu.ac.ge") && !email.endsWith("@kiu.edu.ge")) {
-            showFieldError(emailInput, "Use a KIU student or KIU email address.");
-            showMessage(verificationForm, "Verification failed. KIU email is required.", "error");
+        if (!email) {
+            emailInput.reportValidity();
             return;
         }
 
-        if (password.length < 4) {
-            showFieldError(passwordInput, "Password must contain at least 4 characters.");
-            showMessage(verificationForm, "Verification failed. Password is too short.", "error");
+        if (!password) {
+            passwordInput.reportValidity();
             return;
         }
 
+        if (!emailInput.checkValidity()) {
+            emailInput.classList.add("has-error");
+            emailInput.setCustomValidity(t("verification.emailDomain"));
+            emailInput.reportValidity();
+            return;
+        }
+
+        if (!passwordInput.checkValidity()) {
+            passwordInput.classList.add("has-error");
+            passwordInput.reportValidity();
+            return;
+        }
+
+        emailInput.classList.remove("has-error");
+        passwordInput.classList.remove("has-error");
         sessionStorage.setItem("kiu-services-verified", "true");
 
         showMessage(
             verificationForm,
-            "Verification successful. You can now submit student service requests.",
+            t("verification.success"),
             "success"
         );
     });

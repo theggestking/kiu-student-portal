@@ -800,12 +800,26 @@ html[lang="ka"] .hero-buttons .btn {
 .verification-form {
   flex: 1.7;
   display: flex;
+  flex-wrap: wrap;
   align-items: end;
   gap: 16px;
 }
 
 .verification-form .form-group {
+  flex: 1 1 190px;
   margin-bottom: 0;
+}
+
+.verification-form .btn {
+  flex: 0 0 auto;
+}
+
+.verification-form .js-message {
+  flex: 1 1 100%;
+  margin-top: 0;
+  min-height: 46px;
+  display: flex;
+  align-items: center;
 }
 
 .request-panel {

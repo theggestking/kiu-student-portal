@@ -49,8 +49,9 @@
             <li class="nav-search-item">
               <form class="search-form" action="#" method="get">
                 <label for="site-search" class="visually-hidden">Search</label>
-                <input type="search" id="site-search" name="search" placeholder="Search...">
-                <button type="submit" aria-label="Search">⌕</button>
+                <input type="search" id="site-search" name="search" placeholder="Search portal">
+                <button class="search-clear-button" type="button" aria-label="Clear search" hidden>×</button>
+                <button type="submit" aria-label="Search">Go</button>
               </form>
             </li>
 
@@ -217,11 +218,11 @@
         <div class="container">
 
           <div class="section-heading">
-            <p class="section-label">Live API Data</p>
+            <p class="section-label">Campus Check</p>
             <h2>Campus Weather in Kutaisi</h2>
             <p>
-              This section uses JavaScript Fetch API, Promises, and Async/Await to load live
-              weather data for Kutaisi.
+              Check the latest Kutaisi weather before leaving for lectures, labs, campus events,
+              or an Open Day visit.
             </p>
           </div>
 
@@ -231,14 +232,14 @@
             </article>
 
             <div class="weather-info-panel">
-              <h3>Why this is useful</h3>
+              <h3>Plan your day with confidence</h3>
               <p>
-                Students can quickly check current weather before travelling to campus,
-                attending events, or booking an Open Day visit.
+                We keep a live weather snapshot here so you can prepare for the day,
+                choose the right clothes, and travel to campus comfortably.
               </p>
 
               <button class="btn btn-primary" type="button" id="weather-refresh-btn">
-                Load Live Weather
+                Refresh Weather
               </button>
             </div>
           </div>
@@ -1099,11 +1100,42 @@
         <section class="footer-contact" aria-labelledby="contact-title">
           <h2 id="contact-title">Contact Information</h2>
 
-          <ul>
-            <li>Legal address: Akhalgazrdoba Ave. Lane 5/7, Kutaisi, 4600 Georgia </li>
-            <li>For international student and visitor enquiries: international@kiu.edu.ge</li>
-            <li>Phone: (+995) 577 477197</li>
-            <li>Email: info@kiu.com</li>
+          <ul class="contact-copy-list">
+            <li>
+              <button class="copy-contact-button" type="button" data-copy-label="Legal address"
+                data-copy-value="Akhalgazrdoba Ave. Lane 5/7, Kutaisi, 4600 Georgia">
+                <span class="contact-label">Legal address</span>
+                <span class="contact-value">Akhalgazrdoba Ave. Lane 5/7, Kutaisi, 4600 Georgia</span>
+                <span class="contact-copy-text" aria-live="polite">Copy</span>
+              </button>
+            </li>
+
+            <li>
+              <button class="copy-contact-button" type="button" data-copy-label="International enquiries"
+                data-copy-value="international@kiu.edu.ge">
+                <span class="contact-label">International student and visitor enquiries</span>
+                <span class="contact-value">international@kiu.edu.ge</span>
+                <span class="contact-copy-text" aria-live="polite">Copy</span>
+              </button>
+            </li>
+
+            <li>
+              <button class="copy-contact-button" type="button" data-copy-label="Phone number"
+                data-copy-value="(+995) 577 477197">
+                <span class="contact-label">Phone</span>
+                <span class="contact-value">(+995) 577 477197</span>
+                <span class="contact-copy-text" aria-live="polite">Copy</span>
+              </button>
+            </li>
+
+            <li>
+              <button class="copy-contact-button" type="button" data-copy-label="Email address"
+                data-copy-value="info@kiu.com">
+                <span class="contact-label">Email</span>
+                <span class="contact-value">info@kiu.com</span>
+                <span class="contact-copy-text" aria-live="polite">Copy</span>
+              </button>
+            </li>
           </ul>
         </section>
 

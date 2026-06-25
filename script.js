@@ -46,6 +46,8 @@ const showMessage = (targetElement, message, type = "info") => {
 
     messageBox.textContent = message;
     messageBox.dataset.type = type;
+    messageBox.setAttribute("role", type === "error" ? "alert" : "status");
+    messageBox.setAttribute("aria-live", type === "error" ? "assertive" : "polite");
 
     setTimeout(() => {
         messageBox.remove();
@@ -100,13 +102,51 @@ const clearSearchHighlights = () => {
     });
 };
 
+const SEARCH_RESULT_LABELS = {
+    home: "Home",
+    about: "About the Portal",
+    "about-kiu": "About KIU",
+    "campus-life": "Campus Life",
+    "campus-weather": "Campus Weather",
+    programs: "Academic Programs",
+    "open-day": "Campus Visit",
+    services: "Student Services",
+    events: "Events",
+    news: "News",
+    gallery: "Video Gallery",
+    contact: "Contact Information"
+};
+
 const initSiteSearch = () => {
     const searchForm = $(".search-form");
     const searchInput = $("#site-search");
 
     if (!searchForm || !searchInput) return;
 
+    const searchClearButton = $(".search-clear-button", searchForm);
     const searchableSections = $$("main section, footer");
+    const updateSearchClearButton = () => {
+        if (searchClearButton) {
+            searchClearButton.hidden = !searchInput.value.trim();
+        }
+    };
+
+    searchInput.addEventListener("input", () => {
+        updateSearchClearButton();
+
+        if (!searchInput.value.trim()) {
+            clearSearchHighlights();
+            $(".js-message", searchForm)?.remove();
+        }
+    });
+
+    searchClearButton?.addEventListener("click", () => {
+        searchInput.value = "";
+        searchInput.focus();
+        clearSearchHighlights();
+        $(".js-message", searchForm)?.remove();
+        updateSearchClearButton();
+    });
 
     searchForm.addEventListener("submit", event => {
         event.preventDefault();
@@ -115,7 +155,7 @@ const initSiteSearch = () => {
         clearSearchHighlights();
 
         if (!query) {
-            showMessage(searchForm, "Please enter a search term.", "warning");
+            showMessage(searchForm, "Type a word to search the portal.", "warning");
             return;
         }
 
@@ -126,7 +166,11 @@ const initSiteSearch = () => {
         );
 
         if (!foundSection) {
-            showMessage(searchForm, `No results found for "${query}".`, "error");
+            showMessage(
+                searchForm,
+                `No section matches "${query}". Try programs, weather, services, or contact.`,
+                "error"
+            );
             return;
         }
 
@@ -139,12 +183,16 @@ const initSiteSearch = () => {
             block: "start"
         });
 
+        const sectionName = SEARCH_RESULT_LABELS[id] || "a matching section";
+
         showMessage(
             searchForm,
-            id ? `Found result in #${id}.` : "Found a matching section.",
+            `Jumped to ${sectionName}.`,
             "success"
         );
     });
+
+    updateSearchClearButton();
 };
 
 const getProgramLevel = card => {
@@ -159,9 +207,21 @@ const getProgramLevel = card => {
     return "unknown";
 };
 
+const PROGRAM_LEVEL_LABELS = {
+    bachelor: "Bachelor",
+    "single-cycle": "Single-Cycle",
+    master: "Master",
+    doctoral: "Doctoral"
+};
+
 const getActiveProgramLevel = programsSection => {
     const activeTab = $('input[name="program-level"]:checked', programsSection);
     return activeTab ? activeTab.id.replace("-tab", "") : "bachelor";
+};
+
+const getActiveProgramContent = programsSection => {
+    const activeLevel = getActiveProgramLevel(programsSection);
+    return $(`.${activeLevel}-content`, programsSection);
 };
 
 const initProgramExplorer = () => {
@@ -179,21 +239,44 @@ const initProgramExplorer = () => {
             "afterend",
             `
         <div class="program-tools" aria-label="Program filtering tools">
-          <div class="program-tool-group">
-            <label for="program-filter-search">Search programs</label>
-            <input id="program-filter-search" type="search" placeholder="Example: computer, law, design">
+          <div class="program-search-panel">
+            <div class="program-tool-group">
+              <label for="program-filter-search">Search programs</label>
+              <div class="program-search-field">
+                <input id="program-filter-search" type="search" placeholder="Try computer science, law, design">
+                <button class="program-search-clear-button" type="button" aria-label="Clear program search" hidden>×</button>
+              </div>
+            </div>
           </div>
 
-          <label class="program-favorites-filter">
-            <input id="program-favorites-only" type="checkbox">
-            Show saved programs only
-          </label>
+          <div class="program-tool-actions">
+            <label class="program-favorites-filter">
+              <input id="program-favorites-only" type="checkbox">
+              <span>Saved only</span>
+            </label>
 
-          <p class="program-result-count" aria-live="polite"></p>
+            <p class="program-result-count" aria-live="polite"></p>
+          </div>
         </div>
       `
         );
     }
+
+    const programContentBlocks = $$(".program-content", programsSection);
+
+    programContentBlocks.forEach(contentBlock => {
+        if ($(".program-empty-state-js", contentBlock)) return;
+
+        contentBlock.insertAdjacentHTML(
+            "beforeend",
+            `
+        <div class="program-empty-state-js" aria-live="polite">
+          <h3>No programs found</h3>
+          <p>Try another search term or turn off the saved-only filter.</p>
+        </div>
+      `
+        );
+    });
 
     let favoritePrograms = readFromStorage(STORAGE_KEYS.programFavorites, []);
 
@@ -235,6 +318,7 @@ const initProgramExplorer = () => {
     });
 
     const programSearch = $("#program-filter-search", programsSection);
+    const programSearchClearButton = $(".program-search-clear-button", programsSection);
     const favoritesOnly = $("#program-favorites-only", programsSection);
     const resultCount = $(".program-result-count", programsSection);
 
@@ -257,11 +341,19 @@ const initProgramExplorer = () => {
     };
 
     const applyProgramFilters = () => {
-        const query = programSearch.value.trim().toLowerCase();
+        const rawQuery = programSearch.value.trim();
+        const query = rawQuery.toLowerCase();
         const showFavoritesOnly = favoritesOnly.checked;
         const activeLevel = getActiveProgramLevel(programsSection);
+        const activeLabel = PROGRAM_LEVEL_LABELS[activeLevel] || "this tab";
+
+        if (programSearchClearButton) {
+            programSearchClearButton.hidden = !rawQuery;
+        }
 
         let visibleCount = 0;
+        let activeTotal = 0;
+        let savedInActiveLevel = 0;
 
         programs.forEach(({ id, level, element }) => {
             const matchesActiveTab = level === activeLevel;
@@ -272,14 +364,73 @@ const initProgramExplorer = () => {
 
             element.classList.toggle("is-hidden-by-js", !shouldShow);
 
+            if (matchesActiveTab) {
+                activeTotal += 1;
+
+                if (favoritePrograms.includes(id)) {
+                    savedInActiveLevel += 1;
+                }
+            }
+
             if (matchesActiveTab && shouldShow) {
                 visibleCount += 1;
             }
         });
 
-        resultCount.textContent = query || showFavoritesOnly
-            ? `${visibleCount} matching program${visibleCount === 1 ? "" : "s"} in this tab.`
-            : "";
+        const isFiltering = Boolean(query || showFavoritesOnly);
+        const activeContent = getActiveProgramContent(programsSection);
+        const activeEmptyState = activeContent
+            ? $(".program-empty-state-js", activeContent)
+            : null;
+
+        $$(".program-empty-state-js", programsSection).forEach(emptyState => {
+            emptyState.classList.remove("is-active");
+        });
+
+        $$(".empty-program-state", programsSection).forEach(emptyState => {
+            emptyState.classList.toggle("is-hidden-by-js", isFiltering);
+        });
+
+        if (activeEmptyState && isFiltering && visibleCount === 0) {
+            const emptyTitle = $("h3", activeEmptyState);
+            const emptyText = $("p", activeEmptyState);
+
+            if (showFavoritesOnly && !savedInActiveLevel && !query) {
+                emptyTitle.textContent = `No saved programs in ${activeLabel} yet`;
+                emptyText.textContent = "Use the star on a program card to save it here.";
+            } else if (showFavoritesOnly && query) {
+                emptyTitle.textContent = `No saved matches for "${rawQuery}"`;
+                emptyText.textContent = "Try a different keyword or turn off the saved-only filter.";
+            } else {
+                emptyTitle.textContent = `No matches for "${rawQuery}"`;
+                emptyText.textContent = "Try another keyword such as computer, law, design, or clear the search.";
+            }
+
+            activeEmptyState.classList.add("is-active");
+        }
+
+        if (showFavoritesOnly && query) {
+            resultCount.textContent =
+                `Showing ${visibleCount} saved match${visibleCount === 1 ? "" : "es"} in ${activeLabel}.`;
+            return;
+        }
+
+        if (showFavoritesOnly) {
+            resultCount.textContent = visibleCount
+                ? `Showing ${visibleCount} saved program${visibleCount === 1 ? "" : "s"} in ${activeLabel}.`
+                : `No saved programs in ${activeLabel} yet.`;
+            return;
+        }
+
+        if (query) {
+            resultCount.textContent =
+                `Showing ${visibleCount} match${visibleCount === 1 ? "" : "es"} in ${activeLabel}.`;
+            return;
+        }
+
+        resultCount.textContent = activeTotal
+            ? `${activeTotal} program${activeTotal === 1 ? "" : "s"} in ${activeLabel}.`
+            : `${activeLabel} details coming soon.`;
     };
 
     programsSection.addEventListener("click", event => {
@@ -299,6 +450,11 @@ const initProgramExplorer = () => {
     });
 
     programSearch.addEventListener("input", applyProgramFilters);
+    programSearchClearButton?.addEventListener("click", () => {
+        programSearch.value = "";
+        programSearch.focus();
+        applyProgramFilters();
+    });
     favoritesOnly.addEventListener("change", applyProgramFilters);
 
     levelTabs.forEach(tab => {
@@ -530,6 +686,91 @@ const initProjectForms = () => {
     initStudentVerification();
 };
 
+const copyTextFallback = text =>
+    new Promise((resolve, reject) => {
+        const temporaryInput = document.createElement("textarea");
+
+        temporaryInput.value = text;
+        temporaryInput.setAttribute("readonly", "");
+        temporaryInput.style.position = "fixed";
+        temporaryInput.style.left = "-9999px";
+
+        document.body.appendChild(temporaryInput);
+        temporaryInput.select();
+
+        try {
+            const wasCopied = document.execCommand("copy");
+
+            if (wasCopied) {
+                resolve();
+            } else {
+                reject(new Error("Copy command was not successful."));
+            }
+        } catch (error) {
+            reject(error);
+        } finally {
+            temporaryInput.remove();
+        }
+    });
+
+const copyTextToClipboard = async text => {
+    if (navigator.clipboard && window.isSecureContext) {
+        try {
+            await navigator.clipboard.writeText(text);
+            return;
+        } catch {
+            await copyTextFallback(text);
+            return;
+        }
+    }
+
+    await copyTextFallback(text);
+};
+
+const initContactCopy = () => {
+    const contactButtons = $$(".copy-contact-button");
+
+    contactButtons.forEach(button => {
+        const statusText = $(".contact-copy-text", button);
+        const defaultStatus = statusText?.textContent || "Copy";
+
+        button.addEventListener("click", async () => {
+            const copyValue = button.dataset.copyValue;
+            const copyLabel = button.dataset.copyLabel || "contact information";
+
+            if (!copyValue || !statusText) return;
+
+            button.classList.remove("is-copy-error");
+            button.disabled = true;
+
+            try {
+                await copyTextToClipboard(copyValue);
+
+                statusText.textContent = "Copied";
+                button.classList.add("is-copied");
+                button.setAttribute("aria-label", `${copyLabel} copied`);
+
+                setTimeout(() => {
+                    statusText.textContent = defaultStatus;
+                    button.classList.remove("is-copied");
+                    button.removeAttribute("aria-label");
+                    button.disabled = false;
+                }, 1800);
+            } catch (error) {
+                statusText.textContent = "Try again";
+                button.classList.add("is-copy-error");
+                button.disabled = false;
+                console.error(error);
+
+                setTimeout(() => {
+                    statusText.textContent = defaultStatus;
+                    button.classList.remove("is-copy-error");
+                }, 2200);
+            }
+        });
+    });
+};
+
 const CAMPUS_LOCATION = {
     city: "Kutaisi",
     country: "Georgia",
@@ -601,7 +842,7 @@ const fetchCampusWeather = url =>
 const createCampusWeatherTip = (apparentTemperature, callback) => {
     setTimeout(() => {
         if (apparentTemperature >= 30) {
-            callback("Campus tip: It feels hot. Carry water if you are visiting campus.");
+            callback("Campus tip: It feels hot. Carry water before heading across campus.");
             return;
         }
 
@@ -610,7 +851,7 @@ const createCampusWeatherTip = (apparentTemperature, callback) => {
             return;
         }
 
-        callback("Campus tip: Weather looks comfortable for moving around campus.");
+        callback("Campus tip: Weather looks comfortable for lectures, study breaks, and campus walks.");
     }, 400);
 };
 
@@ -685,10 +926,10 @@ const loadCampusWeather = async () => {
 
     try {
         refreshButton.disabled = true;
-        refreshButton.textContent = "Loading...";
+        refreshButton.textContent = "Updating...";
 
         weatherCard.innerHTML = `
-      <p class="weather-loading">Loading live weather data from the API...</p>
+      <p class="weather-loading">Checking the latest campus weather...</p>
     `;
 
         const apiUrl = buildWeatherUrl(CAMPUS_LOCATION);
@@ -697,7 +938,7 @@ const loadCampusWeather = async () => {
         renderCampusWeather(weatherData);
     } catch (error) {
         renderCampusWeatherError(
-            "Could not load live weather data. Please check your internet connection and try again."
+            "We could not update the campus weather right now. Please try again in a moment."
         );
         console.error(error);
     } finally {
@@ -720,6 +961,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initSiteSearch();
     initProgramExplorer();
     initProjectForms();
+    initContactCopy();
     initCampusWeather();
 
     console.log("Final project JavaScript loaded successfully.");

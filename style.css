@@ -156,6 +156,16 @@ textarea {
   color: var(--muted);
 }
 
+html[lang="ka"] .section-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.7px;
+}
+
+html[lang="ka"] .section-heading h2,
+html[lang="ka"] .about-content h2 {
+  font-size: clamp(1.55rem, 2.6vw, 2.15rem);
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -293,6 +303,11 @@ textarea {
   color: var(--primary);
 }
 
+.language-switch a.is-active {
+  color: var(--primary);
+  font-weight: 800;
+}
+
 /* ---------- Theme Toggle ---------- */
 
 .theme-toggle {
@@ -381,6 +396,31 @@ textarea {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
+}
+
+html[lang="ka"] .nav-list {
+  gap: 18px;
+}
+
+html[lang="ka"] .nav-list a {
+  font-size: 0.84rem;
+}
+
+html[lang="ka"] .hero-content h1 {
+  max-width: 660px;
+  font-size: clamp(2.1rem, 4.4vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.6px;
+}
+
+html[lang="ka"] .hero-text {
+  max-width: 620px;
+  font-size: 1rem;
+}
+
+html[lang="ka"] .hero-buttons .btn {
+  font-size: 0.9rem;
+  padding-inline: 20px;
 }
 
 
@@ -1475,6 +1515,16 @@ textarea {
   transition: var(--transition);
 }
 
+html[lang="ka"] .footer-links a {
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+html[lang="ka"] .contact-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+}
+
 .footer-links a:hover {
   background-color: rgba(32, 184, 199, 0.22);
   transform: translateX(5px);
@@ -1611,6 +1661,10 @@ textarea {
   box-shadow: var(--shadow);
   font-weight: 600;
   animation: pulseBubble 2.4s infinite;
+}
+
+html[lang="ka"] .assistant-bubble {
+  font-size: 0.9rem;
 }
 
 .assistant-avatar {
@@ -1952,6 +2006,10 @@ textarea {
 #theme-toggle:checked~.page .nav-list a:hover {
   color: var(--secondary);
   background: transparent;
+}
+
+#theme-toggle:checked~.page .language-switch a.is-active {
+  color: var(--secondary);
 }
 
 #theme-toggle:checked~.page .hero-section {
@@ -2311,6 +2369,11 @@ textarea {
 
   .hero-content h1 {
     letter-spacing: -1px;
+  }
+
+  html[lang="ka"] .hero-content h1 {
+    font-size: clamp(2rem, 9vw, 3.2rem);
+    letter-spacing: -0.3px;
   }
 
   .hero-buttons {
